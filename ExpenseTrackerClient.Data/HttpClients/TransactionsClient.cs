@@ -11,10 +11,17 @@ public class TransactionsClient
 {   
     private const string CONNECTION_STRING = "https://localhost:44388/";
     private readonly HttpClient _httpClient;
+    
+    // YES Ik it is also very bad :)
     public TransactionsClient()
     {
-        _httpClient = new HttpClient
+        _httpClient = new HttpClient(new HttpClientHandler
         {
+            ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; }
+
+        })
+        {
+            
             BaseAddress = new Uri(CONNECTION_STRING)
         };
     }
