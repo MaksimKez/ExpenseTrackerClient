@@ -1,5 +1,3 @@
-using ExpenseTrackerClient.Data.Models;
-
 namespace ExpenseTrackerClient.Data.HttpClients;
 
 using System;
@@ -7,14 +5,18 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Models;
 
 public class TransactionsClient
 {   
+    private const string CONNECTION_STRING = "https://localhost:44388/";
     private readonly HttpClient _httpClient;
-
-    public TransactionsClient(HttpClient httpClient)
+    public TransactionsClient()
     {
-        _httpClient = httpClient;
+        _httpClient = new HttpClient
+        {
+            BaseAddress = new Uri(CONNECTION_STRING)
+        };
     }
 
     #region Get income and expenses by bank account id
