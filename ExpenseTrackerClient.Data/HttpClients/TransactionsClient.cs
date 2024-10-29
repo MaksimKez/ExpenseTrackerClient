@@ -1,3 +1,5 @@
+using ExpenseTrackerClient.Data.HttpClients.Contracts;
+
 namespace ExpenseTrackerClient.Data.HttpClients;
 
 using System;
@@ -7,7 +9,7 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Models;
 
-public class TransactionsClient
+public class TransactionsClient : ITransactionClient
 {   
     private const string CONNECTION_STRING = "https://localhost:44388/";
     private readonly HttpClient _httpClient;

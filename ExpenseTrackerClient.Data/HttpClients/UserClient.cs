@@ -1,18 +1,21 @@
 using System.Net.Http.Json;
 using System.Reflection.Metadata.Ecma335;
+using ExpenseTrackerClient.Data.HttpClients.Contracts;
 using ExpenseTrackerClient.Data.Models;
 using ExpenseTrackerClient.Data.Models.Dtos;
 using Newtonsoft.Json;
 
 namespace ExpenseTrackerClient.Data.HttpClients;
 
-public class UserClient
+public class UserClient : IUserClient
 {
     private const string CONNECTION_STRING = "https://localhost:44388/";
     private readonly HttpClient _httpClient;
 
     public UserClient()
     {
+        
+        // DI is not used, so itll be like this
         _httpClient = new HttpClient
         {
             BaseAddress = new Uri(CONNECTION_STRING)
