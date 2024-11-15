@@ -17,41 +17,36 @@ public partial class MainWindow : Window
     private ObservableCollection<Income> _incomes;
     private ObservableCollection<Expense> _expenses;
     private TransactionsClient _httpClient;
-    private const string FILE_PATH = "userAndAccountData.json";
+    private const string FILE_PATH = "C:\\Users\\prost\\Desktop\\ExpenseTrackerClient\\ExpenseTrackerClient\\UserAndAccountData.json";
 
     public MainWindow()
     {
         InitializeComponent();
-    
         _httpClient = new TransactionsClient();
-
-        var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
-
-        _incomes = new ObservableCollection<Income>(_httpClient.GetIncomesByBankAccountIdAsync(bankAccountId).Result);
-        _expenses = new ObservableCollection<Expense>(_httpClient.GetExpensesByBankAccountIdAsync(bankAccountId).Result);
-
-        DataContext = this;
     }
-    
-    public async Task LoadDataAsync()
+
+    // Загружаем данные после инициализации UI
+    private async void Window_Loaded(object sender, RoutedEventArgs routedEventArgs)
     {
-        var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
-
-        var incomes = await _httpClient.GetIncomesByBankAccountIdAsync(bankAccountId);
-        _incomes = new ObservableCollection<Income>(incomes);
-
-        var expenses = await _httpClient.GetExpensesByBankAccountIdAsync(bankAccountId);
-        _expenses = new ObservableCollection<Expense>(expenses);
-
-        DataContext = this;
+        try
+        {
+            var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
+            _incomes = new ObservableCollection<Income>(await _httpClient.GetIncomesByBankAccountIdAsync(bankAccountId));
+            _expenses = new ObservableCollection<Expense>(await _httpClient.GetExpensesByBankAccountIdAsync(bankAccountId));
+            DataContext = this;
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Ошибка при загрузке данных: {ex.Message}");
+        }
     }
     
     private Guid GetBankAccountIdFromJson(string filePath)
     {
-        if (!File.Exists(filePath))
+        /*if (!File.Exists(filePath))
         {
-            throw new FileNotFoundException("Файл с данными пользователя не найден.", filePath);
-        }
+            throw new ArgumentException("Файл с данными пользователя не найден.", filePath);
+        }*/
 
         var jsonData = File.ReadAllText(filePath);
 
@@ -60,32 +55,78 @@ public partial class MainWindow : Window
 
         if (userAndAccountData == null || userAndAccountData.BankAccountId == Guid.Empty)
         {
-            throw new InvalidDataException("Неверный формат файла JSON или отсутствует BankAccountId.");
+            throw new ArgumentException("Неверный формат файла JSON или отсутствует BankAccountId.");
         }
 
         return userAndAccountData.BankAccountId;
     }
 
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    private void AddIncomeButton_Click(object sender, RoutedEventArgs e)
+    public async Task AddIncomeAsync(Income newIncome)
     {
-        throw new NotImplementedException();
+        var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
+        await _httpClient.AddIncomeAsync(bankAccountId, newIncome);
+    
+        _incomes.Add(newIncome);  // Обновление коллекции
     }
 
-    private void AddExpenseButton_Click(object sender, RoutedEventArgs e)
+    public async Task AddExpenseAsync(Expense newExpense)
     {
-        throw new NotImplementedException();
+        var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
+        await _httpClient.AddExpenseAsync(bankAccountId, newExpense);
+    
+        _expenses.Add(newExpense);  // Обновление коллекции
     }
 
+    public async Task RemoveIncomeAsync(Guid incomeId)
+    {
+        var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
+        await _httpClient.DeleteIncomeAsync(bankAccountId, incomeId);
+    
+        var incomeToRemove = _incomes.FirstOrDefault(i => i.Id == incomeId);
+        if (incomeToRemove != null)
+        {
+            _incomes.Remove(incomeToRemove);  // Обновление коллекции
+        }
+    }
+
+    public async Task RemoveExpenseAsync(Guid expenseId)
+    {
+        var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
+        await _httpClient.DeleteExpenseAsync(bankAccountId, expenseId);
+    
+        var expenseToRemove = _expenses.FirstOrDefault(e => e.Id == expenseId);
+        if (expenseToRemove != null)
+        {
+            _expenses.Remove(expenseToRemove);  // Обновление коллекции
+        }
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private void LogOutButton_Click(object sender, RoutedEventArgs e)
     {
         throw new NotImplementedException();
