@@ -13,4 +13,8 @@
 		<PackageReference Include="..\ExpenseTrackerClient.Data.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ExpenseTrackerClient.Data\ExpenseTrackerClient.Data.csproj" />
+    </ItemGroup>
+
 </Project>
