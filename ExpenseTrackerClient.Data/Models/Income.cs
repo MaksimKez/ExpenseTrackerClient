@@ -9,7 +9,7 @@ public class Income
     public DateTime CreatedAt { get; set; }
     
     public bool IsValid() =>
-        Id != Guid.Empty && !string.IsNullOrEmpty(Title) && Sum < 0
+        Id != Guid.Empty && !string.IsNullOrEmpty(Title) && Sum > 0
         && Enum.IsDefined(typeof(ExpenseSourceEnum), IncomeSource) && CreatedAt != DateTime.MinValue;
 
 }
