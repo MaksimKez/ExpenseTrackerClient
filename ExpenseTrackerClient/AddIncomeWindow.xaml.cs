@@ -69,7 +69,7 @@ namespace ExpenseTrackerClient
             NavigationService navigationService = NavigationService.GetNavigationService(this);
             navigationService?.Navigate(new Uri("IncomeWindow.xaml", UriKind.Relative));
         }
-        private void ExitBurron_Click(object sender, RoutedEventArgs e)
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService navigationService = NavigationService.GetNavigationService(this);
             navigationService?.Navigate(new Uri("IncomeWindow.xaml", UriKind.Relative));

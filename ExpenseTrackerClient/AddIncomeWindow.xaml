@@ -18,7 +18,7 @@
             <ComboBoxItem Content="Подарок"/>
         </ComboBox>
         <TextBox x:Name="DataTextBox" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Height="20" Margin="140,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="89"/>
-        <Button Content="Добавить" Click="AddInomeButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Height="20" Margin="167,146,0,0" VerticalAlignment="Top" Width="62"/>
+        <Button Content="Добавить" Click="AddIcnomeButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Height="20" Margin="167,146,0,0" VerticalAlignment="Top" Width="62"/>
         <Button Content="" Click="ExitButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Height="20" Margin="129,146,0,0" VerticalAlignment="Top" Width="19"/>
     </Grid>
 </Window>

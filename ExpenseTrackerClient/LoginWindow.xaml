@@ -15,4 +15,6 @@
         <TextBox x:Name="UserNameTextBox" HorizontalAlignment="Left" Height="38" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="277,144,0,0" TextWrapping="Wrap" Text="Введите логин" VerticalAlignment="Top" Width="286"/>
         <TextBox x:Name="UserPasswordTextBox" HorizontalAlignment="Left" Margin="277,214,0,0" TextWrapping="Wrap" Text="Введите пароль" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="286" Height="39"/>
     </Grid>
-</Window>
+</Window>c:\users\tonya\desktop\kursach web api\expensetrackerclient\loginwindow.xaml
+c:\users\tonya\desktop\kursach web api\expensetrackerclient\loginwindow.xaml.cs
+

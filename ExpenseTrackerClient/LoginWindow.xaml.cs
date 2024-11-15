@@ -20,7 +20,7 @@ namespace ExpenseTrackerClient
                 NavigationService navigationService = NavigationService.GetNavigationService(this);
                 navigationService?.Navigate(new Uri("MainWindow.xaml", UriKind.Relative));
             }
-            private async void Button_Click_Regitrate(object sender, RoutedEventArgs e)
+            private async void Button_Click_Login(object sender, RoutedEventArgs e)
             {
                 var username = UserNameTextBox.Text;
                 var userpassword = UserPasswordTextBox.Text;
