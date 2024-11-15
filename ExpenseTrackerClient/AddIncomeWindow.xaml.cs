@@ -23,5 +23,10 @@ namespace ExpenseTrackerClient
         {
             InitializeComponent();
         }
+
+        private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+                
+        }
     }
 }

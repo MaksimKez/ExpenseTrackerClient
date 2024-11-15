@@ -9,9 +9,14 @@
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/Images/AddIncome.png"/>
     </Window.Background>
-    <Grid>
+    <Grid RenderTransformOrigin="0.491,0.296">
         <Button Content="" Background="Transparent" BorderBrush="Transparent" Click="Button_Click_Registration" HorizontalAlignment="Left" Margin="156,144,0,0" VerticalAlignment="Top" Width="30" Height="26"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="CategoryIncome" Margin="114,13,121,153">
+            <ComboBoxItem Content="Зарплата"/>
+            <ComboBoxItem Content="Кредит"/>
+            <ComboBoxItem Content="Подарок"/>
+        </ComboBox>
+        <TextBox  Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="114,46,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="114"/>
 
     </Grid>
 </Window>

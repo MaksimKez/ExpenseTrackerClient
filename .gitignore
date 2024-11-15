@@ -4,3 +4,11 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 .idea
+.vs/ExpenseTrackerClient/FileContentIndex
+.vs/ExpenseTrackerClient/v17
+.vs/ExpenseTrackerClient/DesignTimeBuild
+*.json
+.vs/ExpenseTrackerClient/config
+.vs/kursach web api/v17
+.vs/ProjectEvaluation
+.editorconfig

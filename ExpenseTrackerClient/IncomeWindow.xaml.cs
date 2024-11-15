@@ -28,6 +28,7 @@ namespace ExpenseTrackerClient
         {
             NavigationService navigationService = NavigationService.GetNavigationService(this);
             navigationService?.Navigate(new Uri("MainWindow.xaml", UriKind.Relative));
+            this.Close();
         }
         private void Button_Click_Income(object sender, RoutedEventArgs e)
         {
@@ -38,6 +39,12 @@ namespace ExpenseTrackerClient
         {
             NavigationService navigationService = NavigationService.GetNavigationService(this);
             navigationService?.Navigate(new Uri("ExpenseWindow.xaml", UriKind.Relative));
+            this.Close();
+        }
+        private void Button_Click_AddIncome(object sender, RoutedEventArgs e)
+        {
+            var addIncomeWindow = new AddIncomeWindow();
+            addIncomeWindow.ShowDialog();
         }
     }
 }
