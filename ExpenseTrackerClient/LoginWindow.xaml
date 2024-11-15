@@ -6,8 +6,13 @@
         xmlns:local="clr-namespace:ExpenseTrackerClient"
         mc:Ignorable="d"
         Title="LoginWindow" Height="450" Width="800">
-    <Grid>
-        <Image Source="pack://ExpenseTrackerClient:.../Images/login.png" />
-
+    <Window.Background>
+        <ImageBrush ImageSource="pack://application:,,,/Images/login.png"/>
+    </Window.Background>
+    <Grid Margin="0,0,0,-6">
+        <Button Content="Назад" Background="Transparent" BorderBrush="Transparent" Click="Button_Click_Back" HorizontalAlignment="Left" Height="39" Margin="382,369,0,0" VerticalAlignment="Top" Width="83" RenderTransformOrigin="0.679,0.84"/>
+        <Button Content="Авторизоваться" Background="Transparent" BorderBrush="Transparent"  Click="Button_Click_Login" HorizontalAlignment="Left" Height="42" Margin="277,282,0,0" VerticalAlignment="Top" Width="286"/>
+        <TextBox x:Name="UserNameTextBox" HorizontalAlignment="Left" Height="38" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="277,144,0,0" TextWrapping="Wrap" Text="Введите логин" VerticalAlignment="Top" Width="286"/>
+        <TextBox x:Name="UserPasswordTextBox" HorizontalAlignment="Left" Margin="277,214,0,0" TextWrapping="Wrap" Text="Введите пароль" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="286" Height="39"/>
     </Grid>
 </Window>

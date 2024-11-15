@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ExpenseTrackerClient
@@ -22,6 +23,21 @@ namespace ExpenseTrackerClient
         public IncomeWindow()
         {
             InitializeComponent();
+        }
+        private void Button_Click_Exid(object sender, RoutedEventArgs e)
+        {
+            NavigationService navigationService = NavigationService.GetNavigationService(this);
+            navigationService?.Navigate(new Uri("MainWindow.xaml", UriKind.Relative));
+        }
+        private void Button_Click_Income(object sender, RoutedEventArgs e)
+        {
+            NavigationService navigationService = NavigationService.GetNavigationService(this);
+            navigationService?.Navigate(new Uri("IncomeWindow.xaml", UriKind.Relative));
+        }
+        private void Button_Click_Epense(object sender, RoutedEventArgs e)
+        {
+            NavigationService navigationService = NavigationService.GetNavigationService(this);
+            navigationService?.Navigate(new Uri("ExpenseWindow.xaml", UriKind.Relative));
         }
     }
 }

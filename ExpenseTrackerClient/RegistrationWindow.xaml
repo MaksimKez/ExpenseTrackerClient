@@ -7,10 +7,12 @@
         mc:Ignorable="d"
         Title="RegistrationWindow" Height="450" Width="800">
     <Window.Background>
-        <ImageBrush ImageSource="pack://ExpenseTrackerClien:.../registration.png"/>
+        <ImageBrush ImageSource="pack://application:,,,/Images/registration.png"/>
     </Window.Background>
-    <Grid>
-        <Image Source="pack://ExpenseTrackerClient:.../Images/registration.png" />
-
+    <Grid Margin="0,0,0,-6">
+        <Button Content="Назад" Background="Transparent" BorderBrush="Transparent" Click="Button_Click_Back" HorizontalAlignment="Left" Height="39" Margin="382,369,0,0" VerticalAlignment="Top" Width="83" RenderTransformOrigin="0.679,0.84"/>
+        <Button Content="Зарегистрироваться" Background="Transparent" BorderBrush="Transparent"  Click="Button_Click_Regitrate" HorizontalAlignment="Left" Height="42" Margin="277,282,0,0" VerticalAlignment="Top" Width="286"/>
+        <TextBox x:Name="UserNameBox" HorizontalAlignment="Left" Height="38" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="277,144,0,0" TextWrapping="Wrap" Text="Введите логин" VerticalAlignment="Top" Width="286"/>
+        <TextBox x:Name="UserPasswordBox" HorizontalAlignment="Left" Margin="277,214,0,0" TextWrapping="Wrap" Text="Введите пароль" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="286" Height="39"/>
     </Grid>
 </Window>

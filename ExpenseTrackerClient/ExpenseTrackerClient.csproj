@@ -10,6 +10,7 @@
 
     <ItemGroup>
       <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
+		<PackageReference Include="..\ExpenseTrackerClient.Data.csproj"/>
     </ItemGroup>
 
 </Project>

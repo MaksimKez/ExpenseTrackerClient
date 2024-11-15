@@ -6,8 +6,14 @@
         xmlns:local="clr-namespace:ExpenseTrackerClient"
         mc:Ignorable="d"
         Title="IncomeWindow" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="pack://application:,,,/Images/Income.png"/>
+    </Window.Background>
     <Grid>
-        <Image Source="pack://ExpenseTrackerClient:.../Images/incomes.png" />
+        <Button Content="" Click="Button_Click_Income" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Height="125" Margin="0,26,0,0" VerticalAlignment="Top" Width="122"/>
+        <Button Content="" Click="Button_Click_Expense" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Height="110" Margin="0,189,0,0" VerticalAlignment="Top" Width="122"/>
+        <Button Content="Выйти" Click="Button_Click_Exid" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Height="38" Margin="16,352,0,0" VerticalAlignment="Top" Width="82"/>
+        <Button Content=""  Click="Button_Click_AddIncome" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="428,6,0,0" VerticalAlignment="Top" Height="54" Width="66"/>
 
     </Grid>
 </Window>

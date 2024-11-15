@@ -20,24 +20,16 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
-
-    private void AddIncomeButton_Click(object sender, RoutedEventArgs e)
+    private void Button_Click_Registration(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        NavigationService navigationService = NavigationService.GetNavigationService(this);
+        navigationService?.Navigate(new Uri("RegistrationWindow.xaml", UriKind.Relative));
+        this.Close();
     }
-
-    private void AddExpenseButton_Click(object sender, RoutedEventArgs e)
+    private void Button_Click_Auth(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
-    }
-
-    private void ChangeThemeButton_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void LogOutButton_Click(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
+        NavigationService navigationService = NavigationService.GetNavigationService(this);
+        navigationService?.Navigate(new Uri("LoginWindow.xaml", UriKind.Relative));
+        this.Close();
     }
 }
