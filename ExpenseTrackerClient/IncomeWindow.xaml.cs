@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ExpenseTrackerClient.Data.Models;
 using ExpenseTrackerClient.Data.HttpClients;
 
 namespace ExpenseTrackerClient
@@ -22,19 +24,34 @@ namespace ExpenseTrackerClient
     /// </summary>
     public partial class IncomeWindow : Window
     {
+        private ObservableCollection<Income> _incomes = new ObservableCollection<Income>();
         // делаешь клиент который я написал полем
         public TransactionsClient Client { get; set; }
         public IncomeWindow()
         {
             // объявляешь
             Client = new TransactionsClient();
-            
-            
+
+
             InitializeComponent();
+            IncomeListBox.ItemsSource = _incomes;
+            AddIncomeWindow.IncomeAdded += OnIncomeAdded;
+
+
         }
-        
+
         //и используешь его так во всех окнах
         //todo ВАЖНО, посмотри сами классы, какие они параметры просят и что они возвращают
+        private void Button_Click_AddIncome(object sender, RoutedEventArgs e)
+        {
+            var addIncomeWindow = new AddIncomeWindow();
+            addIncomeWindow.ShowDialog();
+        }
+
+        private void OnIncomeAdded(Income income)
+        {
+            _incomes.Add(income);
+        }
         private void Button_Click_Exit(object sender, RoutedEventArgs e)
         {
             NavigationService navigationService = NavigationService.GetNavigationService(this);

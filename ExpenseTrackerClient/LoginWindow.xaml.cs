@@ -6,7 +6,7 @@ using System.Windows.Navigation;
 using ExpenseTrackerClient.Data.Models.Dtos;
 
 namespace ExpenseTrackerClient
-    {
+{
         public partial class LoginWindow : Window
         {
             private static readonly HttpClient client = new HttpClient();
@@ -61,6 +61,4 @@ namespace ExpenseTrackerClient
                 }
             }
         }
-    }
-}
 }

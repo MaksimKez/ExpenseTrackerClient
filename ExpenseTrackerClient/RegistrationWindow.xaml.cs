@@ -1,4 +1,6 @@
 ﻿using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
 using ExpenseTrackerClient.Data.Models.Dtos;
@@ -11,7 +13,7 @@ namespace ExpenseTrackerClient
     /// </summary>
     public partial class RegistrationWindow : Window
     {
-        private static readonly HttpClient _httpclient = new HttpClient();
+        private static readonly HttpClient client = new HttpClient();
         public RegistrationWindow()
         {
             InitializeComponent();

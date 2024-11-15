@@ -14,6 +14,17 @@
         <Button Content="" Click="Button_Click_Expense" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Height="110" Margin="0,189,0,0" VerticalAlignment="Top" Width="122"/>
         <Button Content="Выйти" Click="Button_Click_Exit" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Height="38" Margin="16,352,0,0" VerticalAlignment="Top" Width="82"/>
         <Button Content=""  Click="Button_Click_AddIncome" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="428,6,0,0" VerticalAlignment="Top" Height="54" Width="66"/>
-
+        <ListBox x:Name="IncomeListBox" Margin="196,88,68,306">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Amount}" Background="LightGray" Padding="5" Margin="2" />
+                        <TextBlock Text="{Binding Category}" Background="LightGray" Padding="5" Margin="2"/>
+                        <TextBlock Text="{Binding Date}" Background="LightGray" Padding="5" Margin="2"/>
+                        <TextBlock Text="{Binding Note}" Background="LightGray" Padding="5" Margin="2" ToolTipService.ToolTip="{Binding Note}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

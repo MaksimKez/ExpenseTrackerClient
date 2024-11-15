@@ -7,11 +7,18 @@
         mc:Ignorable="d"
         Title="AddIncomeWindow" Height="200" Width="350">
     <Window.Background>
-        <ImageBrush ImageSource="pack://application:,,,/Images/AddIncome.png"/>
+        <ImageBrush ImageSource="pack://application:,,,/Images/Add2.png"/>
     </Window.Background>
     <Grid>
-        <Button Content="" Background="Transparent" BorderBrush="Transparent" Click="Button_Click_Registration" HorizontalAlignment="Left" Margin="156,144,0,0" VerticalAlignment="Top" Width="30" Height="26"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-
+        <TextBox x:Name="SumBox" Text="Сумма" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Transparent" BorderBrush="Transparent"  HorizontalAlignment="Left" Margin="115,42,0,0" VerticalAlignment="Top" Width="114" Height="18"/>
+        <TextBox Text="Заметка" x:Name="TitleBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="0,114,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="114"/>
+        <ComboBox x:Name="IncomeComboBox" Background="Transparent" BorderBrush="Transparent" Margin="115,10,121,155">
+            <ComboBoxItem Content="Зарплата"/>
+            <ComboBoxItem Content="Кредит"/>
+            <ComboBoxItem Content="Подарок"/>
+        </ComboBox>
+        <TextBox x:Name="DataTextBox" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Height="20" Margin="140,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="89"/>
+        <Button Content="Добавить" Click="AddInomeButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Height="20" Margin="167,146,0,0" VerticalAlignment="Top" Width="62"/>
+        <Button Content="" Click="ExitButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Height="20" Margin="129,146,0,0" VerticalAlignment="Top" Width="19"/>
     </Grid>
 </Window>
