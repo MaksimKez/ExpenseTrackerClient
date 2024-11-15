@@ -32,11 +32,12 @@ namespace ExpenseTrackerClient
         }
         private async void AddIncomeButton_Click(object sender, RoutedEventArgs e)
         {
-            var selectedCategory = (IncomeSourceEnum)Enum.Parse(typeof(IncomeSourceEnum), ((ComboBoxItem)CategoryBox.SelectedItem).Content.ToString());
+            var selectedCategory = (IncomeSourceEnum)Enum.Parse(typeof(IncomeSourceEnum),
+                (IncomeComboBox.SelectedItem as ComboBoxItem).Content.ToString());
             var sum = decimal.Parse(SumBox.Text);
             var title = TitleBox.Text;
             var date = DateTime.Now;
-
+            
             var incomeDto = new Income
             {
                 IncomeSource = selectedCategory,

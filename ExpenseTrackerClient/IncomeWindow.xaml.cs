@@ -16,12 +16,17 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ExpenseTrackerClient.Data.Models;
 using ExpenseTrackerClient.Data.HttpClients;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+
 
 namespace ExpenseTrackerClient
 {
     /// <summary>
     /// Interaction logic for IncomeWindow.xaml
     /// </summary>
+    private static readonly HttpClient client = new HttpClient();
     public partial class IncomeWindow : Window
     {
         private ObservableCollection<Income> _incomes = new ObservableCollection<Income>();
@@ -67,5 +72,29 @@ namespace ExpenseTrackerClient
             NavigationService navigationService = NavigationService.GetNavigationService(this);
             navigationService?.Navigate(new Uri("ExpenseWindow.xaml", UriKind.Relative));
         }
+
+        private async void DeleteIncomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var incomeId = (Guid)button.Tag;
+
+            // Удаляем доход из списка
+            var incomeToDelete = _incomes.FirstOrDefault(i =>
+            {
+                return i.Id == incomeId;
+            });
+            if (incomeToDelete != null)
+            {
+                _incomes.Remove(incomeToDelete);
+
+                // Отправляем запрос на сервер для удаления дохода из базы данных
+                var response = await client.DeleteAsync($"https://yourapiurl.com/api/income/{incomeId}");
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Failed to delete income from server", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
     }
 }
+

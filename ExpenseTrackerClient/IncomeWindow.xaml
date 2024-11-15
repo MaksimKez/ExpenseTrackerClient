@@ -22,6 +22,7 @@
                         <TextBlock Text="{Binding Category}" Background="LightGray" Padding="5" Margin="2"/>
                         <TextBlock Text="{Binding Date}" Background="LightGray" Padding="5" Margin="2"/>
                         <TextBlock Text="{Binding Note}" Background="LightGray" Padding="5" Margin="2" ToolTipService.ToolTip="{Binding Note}"/>
+                        <Button Content="Delete" Click="DeleteIncomeButton_Click" Tag="{Binding Id}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
