@@ -125,32 +125,31 @@ public partial class MainWindow : Window
     }
 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     private void LogOutButton_Click(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        try
+        {
+            File.WriteAllText(FILE_PATH, string.Empty);
+            MessageBox.Show("Файл очищен успешно.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+            this.Close();
+        }
+        catch
+        {
+            MessageBox.Show($"Ошибка при выходе из аккаунта:", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+    
+    private void RegisterButton_Click(object sender, RoutedEventArgs e)
+    {
+        var registerWindow = new RegisterWindow();
+        registerWindow.Show();
+    }
+    
+    private void RefreshButton_Click(object sender, RoutedEventArgs e)
+    {
+        _incomes = new List<Income>();
+        _expenses = new List<Expense>();
+        IncomesListBox.ItemsSource = _incomes;
+        ExpensesListBox.ItemsSource = _expenses;
     }
 }

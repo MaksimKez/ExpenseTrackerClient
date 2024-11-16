@@ -47,6 +47,10 @@
                 <Button Content="Добавить расход" Width="150" Margin="0,10" 
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="AddExpenseAsync"/>
+                
+                <Button Content="Обновить" Width="150" Margin="0,10" 
+                        Style="{StaticResource MaterialDesignFlatButton}" 
+                        Click="RefreshButton_Click"/>
             </StackPanel>
         </materialDesign:DrawerHost.LeftDrawerContent>
 
