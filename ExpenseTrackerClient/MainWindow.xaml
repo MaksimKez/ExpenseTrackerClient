@@ -74,7 +74,7 @@
                         <ColumnDefinition Width="*" /> <!-- Колонка для расходов -->
                     </Grid.ColumnDefinitions>
 
-                    <ListBox Name="IncomesListBox" Grid.Column="0" Margin="10">
+                    <ListBox Name="IncomesListBox" Grid.Column="0" Margin="10" MouseDoubleClick="RemoveIncomeAsync">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
@@ -91,7 +91,7 @@
                     </ListBox>
 
                     <!-- Список расходов справа -->
-                    <ListBox Name="ExpensesListBox" Grid.Column="1" Margin="10">
+                    <ListBox Name="ExpensesListBox" Grid.Column="1" Margin="10" MouseDoubleClick="RemoveExpenseAsync">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
@@ -107,8 +107,6 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
-
-            
             </Grid>
         </Grid>
     </materialDesign:DrawerHost>

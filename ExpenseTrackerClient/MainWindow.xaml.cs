@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using ExpenseTrackerClient.Data.HttpClients;
 using ExpenseTrackerClient.Data.Models;
 using ExpenseTrackerClient.Models;
@@ -94,16 +96,34 @@ public partial class MainWindow : Window
         ExpensesListBox.ItemsSource = _expenses; // Обновление коллекции
     }
 
-    public async Task RemoveIncomeAsync(Guid incomeId)
+    public async void RemoveIncomeAsync(object sender, MouseButtonEventArgs mouseButtonEventArgs)
     {
-        // todo implement removing
+        var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
+        
+        var incomeId = (IncomesListBox.SelectedItem as Income).Id;
+        if (incomeId.Equals(Guid.Empty))
+            throw new ArgumentException("Выберите доход.");
+        
+        var deleteIncomeWindow = new DeleteIncomeWindow(incomeId, bankAccountId, _httpClient);
+        deleteIncomeWindow.Show();
+        
+        await _httpClient.DeleteIncomeAsync(incomeId, bankAccountId);
         
         IncomesListBox.ItemsSource = _incomes;
     }
 
-    public async Task RemoveExpenseAsync(Guid expenseId)
+    public async void RemoveExpenseAsync(object sender, MouseButtonEventArgs mouseButtonEventArgs)
     {
-        // todo implement removing
+        var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
+        
+        var expenseId = (ExpensesListBox.SelectedItem as Expense).Id;
+        if (expenseId.Equals(Guid.Empty))
+            throw new ArgumentException("Выберите расход.");
+        
+        //var deleteExpenseWindow = new DeleteExpenseWindow(expenseId, bankAccountId, _httpClient);
+        //deleteExpenseWindow.Show();
+        
+        await _httpClient.DeleteExpenseAsync(expenseId, bankAccountId);
         
         ExpensesListBox.ItemsSource = _expenses;
     }
