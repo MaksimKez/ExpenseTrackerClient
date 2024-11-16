@@ -141,7 +141,7 @@ public partial class MainWindow : Window
     
     private void RegisterButton_Click(object sender, RoutedEventArgs e)
     {
-        var registerWindow = new RegisterWindow();
+        var registerWindow = new RegisterWindow(_httpClient, FILE_PATH);
         registerWindow.Show();
     }
     

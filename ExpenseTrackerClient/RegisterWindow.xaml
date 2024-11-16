@@ -7,6 +7,31 @@
         mc:Ignorable="d"
         Title="RegisterWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Username Label -->
+        <Label Content="Username:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" Grid.Row="0" Grid.Column="0"/>
+
+        <!-- Username TextBox -->
+        <TextBox Name="UsernameTextBox" Margin="10" Grid.Row="0" Grid.Column="1"/>
+
+        <!-- Password Label -->
+        <Label Content="Password:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" Grid.Row="1" Grid.Column="0"/>
+
+        <!-- Password Box -->
+        <PasswordBox Name="PasswordBox" Margin="10" Grid.Row="1" Grid.Column="1"/>
+
+        <!-- Register Button -->
+        <Button Content="Register" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Click="RegisterButton_Click"/>
     </Grid>
 </Window>
