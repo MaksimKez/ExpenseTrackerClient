@@ -59,30 +59,49 @@
 
             
             <Grid Grid.Row="1" Margin="10,20">
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="10" />
-        <ColumnDefinition Width="*" />
-    </Grid.ColumnDefinitions>
-
                 <Grid>
-                    <TabControl>
-                        <!-- Вкладка для доходов -->
-                        <TabItem Header="Доходы">
-                            <ListBox Name="IncomesListBox" DisplayMemberPath="Title" />
-                        </TabItem>
+                    <!-- Определяем два столбца, которые растягиваются по размеру окна -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" /> <!-- Колонка для доходов -->
+                        <ColumnDefinition Width="*" /> <!-- Колонка для расходов -->
+                    </Grid.ColumnDefinitions>
 
-                        <!-- Вкладка для расходов -->
-                        <TabItem Header="Расходы">
-                            <ListBox Name="ExpensesListBox" DisplayMemberPath="Title" />
-                        </TabItem>
-                    </TabControl>
+                    <ListBox Name="IncomesListBox" Grid.Column="0" Margin="10">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <!-- Display the Title in Bold -->
+                                    <TextBlock Text="{Binding Title}" FontWeight="Bold" />
+                                    <!-- Display the Sum (decimal) -->
+                                    <TextBlock Text="{Binding Sum, StringFormat=C0}" />
+                                    <!-- Display the CreatedAt (DateTime) -->
+                                    <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:MM/dd/yyyy HH:mm}}" />
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <!-- Список расходов справа -->
+                    <ListBox Name="ExpensesListBox" Grid.Column="1" Margin="10">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <!-- Display the Title in Bold -->
+                                    <TextBlock Text="{Binding Title}" FontWeight="Bold" />
+                                    <!-- Display the Sum (decimal) -->
+                                    <TextBlock Text="{Binding Sum, StringFormat=C0}" />
+                                    <!-- Display the CreatedAt (DateTime) -->
+                                    <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:MM/dd/yyyy HH:mm}}" />
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
-    
-</Grid>
 
             
-            
+            </Grid>
         </Grid>
     </materialDesign:DrawerHost>
 </Window>
