@@ -14,14 +14,16 @@ namespace ExpenseTrackerClient;
 public partial class MainWindow : Window
 {
     
-    private ObservableCollection<Income> _incomes;
-    private ObservableCollection<Expense> _expenses;
+    private List<Income> _incomes;
+    private List<Expense> _expenses;
     private TransactionsClient _httpClient;
     private const string FILE_PATH = "C:\\Users\\prost\\Desktop\\ExpenseTrackerClient\\ExpenseTrackerClient\\UserAndAccountData.json";
 
     public MainWindow()
     {
         InitializeComponent();
+        _incomes = new List<Income>();
+        _expenses = new List<Expense>();
         _httpClient = new TransactionsClient();
     }
 
@@ -31,9 +33,13 @@ public partial class MainWindow : Window
         try
         {
             var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
-            _incomes = new ObservableCollection<Income>(await _httpClient.GetIncomesByBankAccountIdAsync(bankAccountId));
-            _expenses = new ObservableCollection<Expense>(await _httpClient.GetExpensesByBankAccountIdAsync(bankAccountId));
+            _incomes = await _httpClient.GetIncomesByBankAccountIdAsync(bankAccountId);
+            _expenses = await _httpClient.GetExpensesByBankAccountIdAsync(bankAccountId);
             DataContext = this;
+            
+            IncomesListBox.ItemsSource = _incomes;
+            ExpensesListBox.ItemsSource = _expenses;
+
         }
         catch (Exception ex)
         {

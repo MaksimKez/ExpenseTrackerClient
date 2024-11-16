@@ -65,41 +65,20 @@
         <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
 
-    <!-- Card for Income -->
-    <materialDesign:Card Grid.Column="0" Margin="10" Padding="20" Background="#E0F7FA">
-        <StackPanel>
-            <TextBlock Text="Доходы" FontSize="20" FontWeight="Bold" Foreground="#00796B" Margin="0,0,0,10" HorizontalAlignment="Center"/>
-            <ListBox Name="IncomeListBox" Background="White" BorderBrush="#B2DFDB" BorderThickness="1" Padding="5" ItemsSource="{Binding Incomes}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding Sum, StringFormat=C}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
-    </materialDesign:Card>
+                <Grid>
+                    <TabControl>
+                        <!-- Вкладка для доходов -->
+                        <TabItem Header="Доходы">
+                            <ListBox Name="IncomesListBox" DisplayMemberPath="Title" />
+                        </TabItem>
 
-    <Rectangle Grid.Column="1" Width="2" Fill="#E0E0E0"/>
-
-    <!-- Card for Expenses -->
-    <materialDesign:Card Grid.Column="2" Margin="10" Padding="20" Background="#FFEBEE">
-        <StackPanel>
-            <TextBlock Text="Расходы" FontSize="20" FontWeight="Bold" Foreground="#D32F2F" Margin="0,0,0,10" HorizontalAlignment="Center"/>
-            <ListBox Name="ExpenseListBox" Background="White" BorderBrush="#FFCDD2" BorderThickness="1" Padding="5" ItemsSource="{Binding Expenses}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding Sum, StringFormat=C}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
-    </materialDesign:Card>
+                        <!-- Вкладка для расходов -->
+                        <TabItem Header="Расходы">
+                            <ListBox Name="ExpensesListBox" DisplayMemberPath="Title" />
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+    
 </Grid>
 
             
