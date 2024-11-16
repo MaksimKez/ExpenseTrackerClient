@@ -75,7 +75,8 @@ public partial class MainWindow : Window
         var AddIncomeWindow = new AddIncomeWindow(bankAccountId, _httpClient);
     
         AddIncomeWindow.Show();
-        
+         
+        _incomes = await _httpClient.GetIncomesByBankAccountIdAsync(bankAccountId);
         IncomesListBox.ItemsSource = _incomes;  // Обновление коллекции
     }
 
@@ -83,7 +84,13 @@ public partial class MainWindow : Window
     {
         var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
         
+        var addExpenseWindow = new AddExpenseWindow(bankAccountId, _httpClient);
+    
+        addExpenseWindow.Show();
+        
+        _expenses = await _httpClient.GetExpensesByBankAccountIdAsync(bankAccountId);
 
+        _incomes = await _httpClient.GetIncomesByBankAccountIdAsync(bankAccountId);
         ExpensesListBox.ItemsSource = _expenses; // Обновление коллекции
     }
 

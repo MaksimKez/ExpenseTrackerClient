@@ -46,5 +46,14 @@ public partial class AddIncomeWindow : Window
         };
         
         var id = await _client.AddIncomeAsync(_bankAccountId, income);
+        
+        if (id.Equals(Guid.Empty))
+        {
+            MessageBox.Show("Доход не был добавлен.");
+            return;
+        }
+        
+        MessageBox.Show("Доход был добавлен.");
+        Close();
     }
 }
