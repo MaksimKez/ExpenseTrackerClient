@@ -68,44 +68,37 @@ public partial class MainWindow : Window
     }
 
 
-    public async Task AddIncomeAsync(Income newIncome)
+    public async void AddIncomeAsync(object sender, RoutedEventArgs routedEventArgs)
     {
         var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
-        await _httpClient.AddIncomeAsync(bankAccountId, newIncome);
+        
+        var AddIncomeWindow = new AddIncomeWindow(bankAccountId, _httpClient);
     
-        _incomes.Add(newIncome);  // Обновление коллекции
+        AddIncomeWindow.Show();
+        
+        IncomesListBox.ItemsSource = _incomes;  // Обновление коллекции
     }
 
-    public async Task AddExpenseAsync(Expense newExpense)
+    public async void AddExpenseAsync(object sender, RoutedEventArgs routedEventArgs)
     {
         var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
-        await _httpClient.AddExpenseAsync(bankAccountId, newExpense);
-    
-        _expenses.Add(newExpense);  // Обновление коллекции
+        
+
+        ExpensesListBox.ItemsSource = _expenses; // Обновление коллекции
     }
 
     public async Task RemoveIncomeAsync(Guid incomeId)
     {
-        var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
-        await _httpClient.DeleteIncomeAsync(bankAccountId, incomeId);
-    
-        var incomeToRemove = _incomes.FirstOrDefault(i => i.Id == incomeId);
-        if (incomeToRemove != null)
-        {
-            _incomes.Remove(incomeToRemove);  // Обновление коллекции
-        }
+        // todo implement removing
+        
+        IncomesListBox.ItemsSource = _incomes;
     }
 
     public async Task RemoveExpenseAsync(Guid expenseId)
     {
-        var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
-        await _httpClient.DeleteExpenseAsync(bankAccountId, expenseId);
-    
-        var expenseToRemove = _expenses.FirstOrDefault(e => e.Id == expenseId);
-        if (expenseToRemove != null)
-        {
-            _expenses.Remove(expenseToRemove);  // Обновление коллекции
-        }
+        // todo implement removing
+        
+        ExpensesListBox.ItemsSource = _expenses;
     }
 
     

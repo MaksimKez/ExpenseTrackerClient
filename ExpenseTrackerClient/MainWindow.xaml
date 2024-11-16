@@ -39,6 +39,14 @@
                 <Button Content="Выйти из аккаунта" Width="150" Margin="0,10" 
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="LogOutButton_Click"/>
+                
+                <Button Content="Добавить доход" Width="150" Margin="0,10" 
+                        Style="{StaticResource MaterialDesignFlatButton}" 
+                        Click="AddIncomeAsync"/>
+                
+                <Button Content="Добавить расход" Width="150" Margin="0,10" 
+                        Style="{StaticResource MaterialDesignFlatButton}" 
+                        Click="AddExpenseAsync"/>
             </StackPanel>
         </materialDesign:DrawerHost.LeftDrawerContent>
 
