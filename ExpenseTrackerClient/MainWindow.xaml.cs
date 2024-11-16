@@ -107,8 +107,6 @@ public partial class MainWindow : Window
         var deleteIncomeWindow = new DeleteIncomeWindow(incomeId, bankAccountId, _httpClient);
         deleteIncomeWindow.Show();
         
-        await _httpClient.DeleteIncomeAsync(incomeId, bankAccountId);
-        
         IncomesListBox.ItemsSource = _incomes;
     }
 
@@ -120,10 +118,8 @@ public partial class MainWindow : Window
         if (expenseId.Equals(Guid.Empty))
             throw new ArgumentException("Выберите расход.");
         
-        //var deleteExpenseWindow = new DeleteExpenseWindow(expenseId, bankAccountId, _httpClient);
-        //deleteExpenseWindow.Show();
-        
-        await _httpClient.DeleteExpenseAsync(expenseId, bankAccountId);
+        var deleteExpenseWindow = new DeleteExpenseWindow(expenseId, bankAccountId, _httpClient);
+        deleteExpenseWindow.Show();
         
         ExpensesListBox.ItemsSource = _expenses;
     }

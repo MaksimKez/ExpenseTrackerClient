@@ -3,13 +3,13 @@ using ExpenseTrackerClient.Data.HttpClients;
 
 namespace ExpenseTrackerClient;
 
-public partial class DeleteIncomeWindow : Window
+public partial class DeleteExpenseWindow : Window
 {
     private Guid _bankAccountId;
     private Guid _incomeId; 
     private readonly TransactionsClient _client; 
 
-    public DeleteIncomeWindow(Guid incomeId, Guid bankAccountId, TransactionsClient client)
+    public DeleteExpenseWindow(Guid incomeId, Guid bankAccountId, TransactionsClient client)
     {
         _bankAccountId = bankAccountId;
         _client = client;
@@ -25,13 +25,13 @@ public partial class DeleteIncomeWindow : Window
 
     private async void OnYesClick(object sender, RoutedEventArgs e)
     {
-        var success = await _client.DeleteIncomeAsync(_incomeId, _bankAccountId);
+        var success = await _client.DeleteExpenseAsync(_incomeId, _bankAccountId);
         if (success)
         {
-            MessageBox.Show("Доход успешно удален.");
+            MessageBox.Show("Расход успешно удален.");
             return;
         }
         
-        MessageBox.Show("Произошла ошибка при удалении дохода.");
+        MessageBox.Show("Произошла ошибка при удалении расхода.");
     }
 }
