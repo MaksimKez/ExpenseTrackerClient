@@ -33,5 +33,7 @@ public partial class DeleteExpenseWindow : Window
         }
         
         MessageBox.Show("Произошла ошибка при удалении расхода.");
+        
+        this.Close();
     }
 }

@@ -32,30 +32,26 @@ public partial class RegisterWindow : Window
             MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
-
-        // Создаем DTO с введенными данными
-        RegisterUserDto newUser = new RegisterUserDto
-        {
-            Username = username,
-            Password = password
-        };
-
-        var bankAccountId = await _clientT.CreateBankAccountAsync(new BankAccount()
-        {
-            Id = Guid.NewGuid(),
-            Balance = 0
-        });
-
-        if (bankAccountId == Guid.Empty) return;
         
-        var userId = await clientU.RegisterUserAsync(username, password, bankAccountId);
-        
-        if (userId == Guid.Empty) return;
-            
-        File.WriteAllText(path, JsonConvert.SerializeObject(new UserAndAccountData
-            { UserId = userId, BankAccountId = bankAccountId }));
-                
-        MessageBox.Show("Регистрация прошла успешно!", "Успех", MessageBoxButton.OK,
-            MessageBoxImage.Information);
+
+        // Попытка входа пользователя
+        var userId = await clientU.LoginUserAsync(username, password);
+
+        if (userId == Guid.Empty)
+        {
+            MessageBox.Show("Неверное имя пользователя или пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+    
+        // Сохраняем данные пользователя в файл
+        File.WriteAllText(path, JsonConvert.SerializeObject(new UserAndAccountData { UserId = userId }));
+
+        MessageBox.Show("Вход выполнен успешно!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+        this.Close();
+    }
+    
+    private async void ExitButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.Close();
     }
 }

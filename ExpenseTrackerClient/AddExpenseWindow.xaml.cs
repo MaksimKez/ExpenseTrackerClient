@@ -59,4 +59,8 @@ public partial class AddExpenseWindow : Window
         MessageBox.Show("Доход был добавлен.");
         Close();
     }
+    private async void ExitButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.Close();
+    }
 }

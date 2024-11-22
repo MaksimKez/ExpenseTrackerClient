@@ -33,5 +33,6 @@ public partial class DeleteIncomeWindow : Window
         }
         
         MessageBox.Show("Произошла ошибка при удалении дохода.");
+        this.Close();
     }
 }
