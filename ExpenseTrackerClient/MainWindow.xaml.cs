@@ -147,8 +147,6 @@ public partial class MainWindow : Window
     
     private void RefreshButton_Click(object sender, RoutedEventArgs e)
     {
-        _incomes = new List<Income>();
-        _expenses = new List<Expense>();
         IncomesListBox.ItemsSource = _incomes;
         ExpensesListBox.ItemsSource = _expenses;
     }
