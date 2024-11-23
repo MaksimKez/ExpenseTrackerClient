@@ -15,9 +15,13 @@ public class UserClient : IUserClient
     public UserClient()
     {
         
-        // DI is not used, so itll be like this
-        _httpClient = new HttpClient
+        _httpClient = new HttpClient(new HttpClientHandler
         {
+            ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; }
+
+        })
+        {
+            
             BaseAddress = new Uri(CONNECTION_STRING)
         };
     }
