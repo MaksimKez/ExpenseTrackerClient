@@ -8,20 +8,20 @@
         <Grid.Background>
             <ImageBrush ImageSource="Images/firstPage.png"/>
         </Grid.Background>
-        
         <Canvas>
-            <Button Content="Зарегистрироваться" Width="190" Height="50" Margin="15,130" 
-                    Canvas.Right="90" Canvas.Bottom="93" 
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    Click="RegisterButton_Click"/>
-        </Canvas>
-        <Canvas>
-            <Button Content="Войти" Width="190" Height="50" Margin="15,130" 
-                    Canvas.Right="90" Canvas.Bottom="-12" 
+            <Canvas.RenderTransform>
+                <ScaleTransform x:Name="ScaleTransform"/>
+            </Canvas.RenderTransform>
+                <Button Content="Зарегистрироваться" Width="190" Height="50" Margin="15,130" 
+                        Canvas.Right="90" Canvas.Bottom="94" 
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Click="RegisterButton_Click"/>
+                <Button Content="Войти" Width="190" Height="50" Margin="15,130" 
+                    Canvas.Right="90" Canvas.Bottom="-13" 
                     Background="Transparent"
                     BorderBrush="Transparent"
                     Click="LoginButton_Click"/>
-        </Canvas>
+            </Canvas>
     </Grid> 
 </Window>
