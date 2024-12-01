@@ -37,25 +37,39 @@
             </PathGeometry>
         </Path.Data>
     </Path>
-   
     
-        <!--<Grid.Background>
-            <ImageBrush ImageSource="Images/firstPage.png"/>
-        </Grid.Background>-->
         <Canvas>
             <Canvas.RenderTransform>
                 <ScaleTransform x:Name="ScaleTransform"/>
             </Canvas.RenderTransform>
-                <Button Content="Зарегистрироваться" Width="190" Height="50" Margin="15,130" 
-                        Canvas.Right="90" Canvas.Bottom="94" 
-                        Background="Transparent"
+                <Button Content="Зарегистрироваться" FontSize="22" Foreground="MidnightBlue" 
+                        Width="250" Height="70" Margin="15,130" 
+                        Canvas.Right="100" Canvas.Bottom="94"
+                        Background="DodgerBlue"
                         BorderBrush="Transparent"
-                        Click="RegisterButton_Click"/>
-                <Button Content="Войти" Width="190" Height="50" Margin="15,130" 
-                    Canvas.Right="90" Canvas.Bottom="-13" 
-                    Background="Transparent"
+                        Click="RegisterButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="20" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Content="Войти" FontSize="22" Foreground="MidnightBlue" 
+                        Width="190" Height="70" Margin="15,130" 
+                    Canvas.Right="450" Canvas.Bottom="94" 
+                    Background="DodgerBlue"
                     BorderBrush="Transparent"
-                    Click="LoginButton_Click"/>
+                    Click="LoginButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="20" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </Canvas>
     </Grid> 
 </Window>

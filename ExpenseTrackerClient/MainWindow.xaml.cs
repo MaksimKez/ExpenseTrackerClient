@@ -15,16 +15,12 @@ namespace ExpenseTrackerClient;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private List<Income> _incomes;
-    private List<Expense> _expenses;
     private TransactionsClient _httpClient;
     private const string FILE_PATH = "C:\\Users\\tonya\\Desktop\\ExpenseTrackerClient\\ExpenseTrackerClient\\UserAndAccountData.json";
 
     public MainWindow()
     {
         InitializeComponent();
-        _incomes = new List<Income>();
-        _expenses = new List<Expense>();
         _httpClient = new TransactionsClient();
     }
     
