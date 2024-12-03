@@ -35,5 +35,12 @@ public partial class LogInWindow : Window
 
         var mainWindow = new MainWindow();
         mainWindow.Show();
+        
+        Close();
+    }
+
+    private void BackButton_Click(object sender, RoutedEventArgs e)
+    {
+        Close();
     }
 }

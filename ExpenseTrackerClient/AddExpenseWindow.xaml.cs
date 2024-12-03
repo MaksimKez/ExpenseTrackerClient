@@ -52,11 +52,12 @@ public partial class AddExpenseWindow : Window
         
         if (id.Equals(Guid.Empty))
         {
-            MessageBox.Show("Доход не был добавлен.");
+            MessageBox.Show("Введите корректные данные.");
+            Close();
             return;
         }
         
-        MessageBox.Show("Доход был добавлен.");
+        MessageBox.Show("Расход был добавлен.");
         Close();
     }
 }

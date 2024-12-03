@@ -29,9 +29,12 @@ public partial class DeleteIncomeWindow : Window
         if (success)
         {
             MessageBox.Show("Доход успешно удален.");
+            Close();
             return;
         }
         
-        MessageBox.Show("Произошла ошибка при удалении дохода.");
+        MessageBox.Show("Введите корректные данные.");
+        
+        Close();
     }
 }

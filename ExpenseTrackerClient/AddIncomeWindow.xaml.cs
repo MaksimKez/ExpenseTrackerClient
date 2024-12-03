@@ -49,7 +49,8 @@ public partial class AddIncomeWindow : Window
         
         if (id.Equals(Guid.Empty))
         {
-            MessageBox.Show("Доход не был добавлен.");
+            MessageBox.Show("Введите корректные данные.");
+            Close();
             return;
         }
         

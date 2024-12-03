@@ -3,7 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ExpenseTrackerClient"
+        xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+        wpf:ColorZoneAssist.Mode="PrimaryDark"
         mc:Ignorable="d"
         Title="RegisterWindow" Height="450" Width="800">
     <Grid>
@@ -11,7 +14,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -19,19 +22,60 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Username Label -->
-        <Label Content="Username:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" Grid.Row="0" Grid.Column="0"/>
+        <!-- Кнопка Назад -->
+        <Button Content="Назад"
+                Margin="10"
+                Padding="5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Grid.Row="0"
+                Grid.Column="0"
+                Click="ExitButton_Click" />
 
-        <!-- Username TextBox -->
-        <TextBox Name="UsernameTextBox" Margin="10" Grid.Row="0" Grid.Column="1"/>
+        <!-- Заголовок -->
+        <TextBlock Text="Регистрация пользователя"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Margin="10"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
 
-        <!-- Password Label -->
-        <Label Content="Password:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" Grid.Row="1" Grid.Column="0"/>
+        <!-- Лейбл для ввода имени -->
+        <TextBlock Text="Имя пользователя:"
+                   VerticalAlignment="Center"
+                   Margin="10"
+                   Grid.Row="1"
+                   Grid.Column="0" />
 
-        <!-- Password Box -->
-        <PasswordBox Name="PasswordBox" Margin="10" Grid.Row="1" Grid.Column="1"/>
+        <!-- Поле для ввода имени -->
+        <TextBox Name="UsernameTextBox"
+                 Margin="10"
+                 Grid.Row="1"
+                 Grid.Column="1" />
 
-        <!-- Register Button -->
-        <Button Content="Register" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Click="RegisterButton_Click"/>
+        <!-- Лейбл для ввода пароля -->
+        <TextBlock Text="Пароль:"
+                   VerticalAlignment="Center"
+                   Margin="10"
+                   Grid.Row="2"
+                   Grid.Column="0" />
+
+        <!-- Поле для ввода пароля -->
+        <PasswordBox Name="PasswordBox"
+                     Margin="10"
+                     Grid.Row="2"
+                     Grid.Column="1" />
+
+        <!-- Кнопка Регистрация -->
+        <Button Content="Регистрация"
+                Margin="10"
+                Padding="5"
+                Grid.Row="3"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="RegisterButton_Click" />
     </Grid>
 </Window>

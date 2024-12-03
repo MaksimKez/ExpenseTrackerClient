@@ -15,48 +15,44 @@ namespace ExpenseTrackerClient;
 /// </summary>
 public partial class MainWindow : Window
 {
-    
-    private List<Income> _incomes;
-    private List<Expense> _expenses;
+    private ObservableCollection<Income> _incomes;
+    private ObservableCollection<Expense> _expenses;
     private TransactionsClient _httpClient;
     private const string FILE_PATH = "C:\\Users\\prost\\Desktop\\ExpenseTrackerClient\\ExpenseTrackerClient\\UserAndAccountData.json";
 
     public MainWindow()
     {
         InitializeComponent();
-        _incomes = new List<Income>();
-        _expenses = new List<Expense>();
+        _incomes = new ObservableCollection<Income>();
+        _expenses = new ObservableCollection<Expense>();
         _httpClient = new TransactionsClient();
     }
 
-    // Загружаем данные после инициализации UI
     private async void Window_Loaded(object sender, RoutedEventArgs routedEventArgs)
     {
         try
         {
             var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
-            _incomes = await _httpClient.GetIncomesByBankAccountIdAsync(bankAccountId);
-            _expenses = await _httpClient.GetExpensesByBankAccountIdAsync(bankAccountId);
-            DataContext = this;
             
+            // Загрузка доходов и расходов
+            await LoadDataAsync(bankAccountId);
+            
+            // Привязка источников данных
             IncomesListBox.ItemsSource = _incomes;
             ExpensesListBox.ItemsSource = _expenses;
-
         }
         catch (Exception ex)
         {
-            //  отобразить окно регистрации/входа
+            MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка загрузки", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
-    
+
     private Guid GetBankAccountIdFromJson(string filePath)
     {
         var jsonData = File.ReadAllText(filePath);
 
-        // Десериализуем JSON данные
         var accountData = JsonConvert.DeserializeObject<AccountData>(jsonData);
-
-        if (accountData == null && accountData.BankAccountId == Guid.Empty)
+        if (accountData == null || accountData.BankAccountId == Guid.Empty)
         {
             throw new ArgumentException("Неверный формат файла JSON или отсутствует BankAccountId.");
         }
@@ -64,85 +60,81 @@ public partial class MainWindow : Window
         return accountData.BankAccountId;
     }
 
+    private async Task LoadDataAsync(Guid bankAccountId)
+    {
+        _incomes.Clear();
+        var incomesFromApi = await _httpClient.GetIncomesByBankAccountIdAsync(bankAccountId);
+        foreach (var income in incomesFromApi)
+        {
+            _incomes.Add(income);
+        }
+
+        _expenses.Clear();
+        var expensesFromApi = await _httpClient.GetExpensesByBankAccountIdAsync(bankAccountId);
+        foreach (var expense in expensesFromApi)
+        {
+            _expenses.Add(expense);
+        }
+    }
 
     public async void AddIncomeAsync(object sender, RoutedEventArgs routedEventArgs)
     {
         var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
-        
-        var AddIncomeWindow = new AddIncomeWindow(bankAccountId, _httpClient);
-    
-        AddIncomeWindow.Show();
-         
-        _incomes = await _httpClient.GetIncomesByBankAccountIdAsync(bankAccountId);
-        IncomesListBox.ItemsSource = _incomes;  // Обновление коллекции
+
+        var addIncomeWindow = new AddIncomeWindow(bankAccountId, _httpClient);
+        addIncomeWindow.ShowDialog(); // Дождаться закрытия окна
+
+        await LoadDataAsync(bankAccountId);
     }
 
     public async void AddExpenseAsync(object sender, RoutedEventArgs routedEventArgs)
     {
         var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
-        
-        var addExpenseWindow = new AddExpenseWindow(bankAccountId, _httpClient);
-    
-        addExpenseWindow.Show();
-        
-        _expenses = await _httpClient.GetExpensesByBankAccountIdAsync(bankAccountId);
 
-        _incomes = await _httpClient.GetIncomesByBankAccountIdAsync(bankAccountId);
-        ExpensesListBox.ItemsSource = _expenses; // Обновление коллекции
+        var addExpenseWindow = new AddExpenseWindow(bankAccountId, _httpClient);
+        addExpenseWindow.ShowDialog(); // Дождаться закрытия окна
+
+        await LoadDataAsync(bankAccountId);
     }
 
     public async void RemoveIncomeAsync(object sender, MouseButtonEventArgs mouseButtonEventArgs)
     {
         var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
-        
-        var incomeId = (IncomesListBox.SelectedItem as Income).Id;
-        if (incomeId.Equals(Guid.Empty))
-            throw new ArgumentException("Выберите доход.");
-        
-        var deleteIncomeWindow = new DeleteIncomeWindow(incomeId, bankAccountId, _httpClient);
-        deleteIncomeWindow.Show();
-        
-        IncomesListBox.ItemsSource = _incomes;
+
+        if (IncomesListBox.SelectedItem is Income selectedIncome)
+        {
+            var deleteIncomeWindow = new DeleteIncomeWindow(selectedIncome.Id, bankAccountId, _httpClient);
+            deleteIncomeWindow.ShowDialog();
+
+            await LoadDataAsync(bankAccountId);
+        }
+        else
+        {
+            MessageBox.Show("Выберите доход для удаления.", "Удаление дохода", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
     }
 
     public async void RemoveExpenseAsync(object sender, MouseButtonEventArgs mouseButtonEventArgs)
     {
         var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
-        
-        var expenseId = (ExpensesListBox.SelectedItem as Expense).Id;
-        if (expenseId.Equals(Guid.Empty))
-            throw new ArgumentException("Выберите расход.");
-        
-        var deleteExpenseWindow = new DeleteExpenseWindow(expenseId, bankAccountId, _httpClient);
-        deleteExpenseWindow.Show();
-        
-        ExpensesListBox.ItemsSource = _expenses;
+
+        if (ExpensesListBox.SelectedItem is Expense selectedExpense)
+        {
+            var deleteExpenseWindow = new DeleteExpenseWindow(selectedExpense.Id, bankAccountId, _httpClient);
+            deleteExpenseWindow.ShowDialog();
+
+            await LoadDataAsync(bankAccountId);
+        }
+        else
+        {
+            MessageBox.Show("Выберите расход для удаления.", "Удаление расхода", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
     }
 
-    
     private void LogOutButton_Click(object sender, RoutedEventArgs e)
     {
-        try
-        {
-            File.WriteAllText(FILE_PATH, string.Empty);
-            MessageBox.Show("Файл очищен успешно.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-            this.Close();
-        }
-        catch
-        {
-            MessageBox.Show($"Ошибка при выходе из аккаунта:", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-    }
-    
-    private void RegisterButton_Click(object sender, RoutedEventArgs e)
-    {
-        var registerWindow = new RegisterWindow();
-        registerWindow.Show();
-    }
-    
-    private void RefreshButton_Click(object sender, RoutedEventArgs e)
-    {
-        IncomesListBox.ItemsSource = _incomes;
-        ExpensesListBox.ItemsSource = _expenses;
+        var registerOrLogInWindow = new RegisterOrLogInWindow();
+        registerOrLogInWindow.Show();
+        Close();
     }
 }

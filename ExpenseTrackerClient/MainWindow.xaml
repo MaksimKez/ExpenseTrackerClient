@@ -35,7 +35,6 @@
         <!-- Левая выезжающая панель -->
         <materialDesign:DrawerHost.LeftDrawerContent>
             <StackPanel Margin="20">
-                <!-- Использование стилей для кнопок Material Design -->
                 <Button Content="Выйти из аккаунта" Width="150" Margin="0,10" 
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="LogOutButton_Click"/>
@@ -47,14 +46,6 @@
                 <Button Content="Добавить расход" Width="150" Margin="0,10" 
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="AddExpenseAsync"/>
-                
-                <Button Content="Обновить" Width="150" Margin="0,10" 
-                        Style="{StaticResource MaterialDesignFlatButton}" 
-                        Click="RefreshButton_Click"/>
-                
-                <Button Content="Регистрация" Width="150" Margin="0,10" 
-                        Style="{StaticResource MaterialDesignFlatButton}" 
-                        Click="RegisterButton_Click"/>
             </StackPanel>
         </materialDesign:DrawerHost.LeftDrawerContent>
 

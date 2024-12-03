@@ -12,6 +12,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -19,19 +20,52 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Username Label -->
-        <Label Content="Username:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" Grid.Row="0" Grid.Column="0"/>
+        <!-- Кнопка Назад -->
+        <Button Content="Назад"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="10"
+                Grid.Row="0"
+                Grid.Column="0"
+                Click="BackButton_Click" />
 
-        <!-- Username TextBox -->
-        <TextBox Name="UsernameTextBox" Margin="10" Grid.Row="0" Grid.Column="1"/>
+        <!-- Лейбл для ввода имени пользователя -->
+        <Label Content="Имя пользователя:"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Right"
+               Margin="10"
+               Grid.Row="1"
+               Grid.Column="0" />
 
-        <!-- Password Label -->
-        <Label Content="Password:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10" Grid.Row="1" Grid.Column="0"/>
+        <!-- Поле для ввода имени пользователя -->
+        <TextBox Name="UsernameTextBox"
+                 Margin="10"
+                 Grid.Row="1"
+                 Grid.Column="1" />
 
-        <!-- Password Box -->
-        <PasswordBox Name="PasswordBox" Margin="10" Grid.Row="1" Grid.Column="1"/>
+        <!-- Лейбл для ввода пароля -->
+        <Label Content="Пароль:"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Right"
+               Margin="10"
+               Grid.Row="2"
+               Grid.Column="0" />
 
-        <!-- Register Button -->
-        <Button Content="Войти в аккаунт" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Click="LogInButton_Click"/>
+        <!-- Поле для ввода пароля -->
+        <PasswordBox Name="PasswordBox"
+                     Margin="10"
+                     Grid.Row="2"
+                     Grid.Column="1" />
+
+        <!-- Кнопка для входа в аккаунт -->
+        <Button Content="Войти в аккаунт"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="10"
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Click="LogInButton_Click" />
     </Grid>
+
 </Window>

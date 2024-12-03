@@ -53,4 +53,9 @@ public partial class RegisterWindow : Window
 
         Close();
     }
+
+    private void ExitButton_Click(object sender, RoutedEventArgs e)
+    {
+        Close();
+    }
 }

@@ -29,9 +29,11 @@ public partial class DeleteExpenseWindow : Window
         if (success)
         {
             MessageBox.Show("Расход успешно удален.");
+            Close();
             return;
         }
         
-        MessageBox.Show("Произошла ошибка при удалении расхода.");
+        MessageBox.Show("Введите корректные данные.");
+        Close();
     }
 }
