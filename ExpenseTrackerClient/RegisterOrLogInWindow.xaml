@@ -6,50 +6,15 @@
         xmlns:local="clr-namespace:ExpenseTrackerClient"
         mc:Ignorable="d"
         Title="RegisterOrLogInWindow" Height="450" Width="800">
-    <Window.Background>
-        <!-- Легкий градиентный фон -->
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="#e0f7fa" Offset="0.0"/>
-            <GradientStop Color="#ffffff" Offset="1.0"/>
-        </LinearGradientBrush>
-    </Window.Background>
-
-    <Window.Resources>
-        <!-- Стиль для кнопок с равномерным радиусом углов и приятным фоном -->
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="#6200EE"/> <!-- Фон кнопок -->
-            <Setter Property="Foreground" Value="White"/>  <!-- Цвет текста -->
-            <Setter Property="FontSize" Value="16"/>       <!-- Размер шрифта -->
-            <Setter Property="Height" Value="50"/>         <!-- Высота кнопок -->
-            <Setter Property="Margin" Value="10"/>         <!-- Отступы -->
-            <Setter Property="Padding" Value="10"/>        <!-- Внутренние отступы -->
-            <Setter Property="BorderBrush" Value="#6200EE"/> <!-- Цвет обводки -->
-            <Setter Property="BorderThickness" Value="1"/>   <!-- Толщина обводки -->
-            <Setter Property="CornerRadius" Value="20"/>   <!-- Радиус углов -->
-            <Setter Property="FontWeight" Value="Bold"/>   <!-- Толщина шрифта -->
-        </Style>
-    </Window.Resources>
-
     <Grid>
-        <!-- Слои с фигурами на фоне -->
-        <Canvas>
-            <!-- Случайные геометрические фигуры, добавленные на фон -->
-            <Ellipse Width="150" Height="150" Fill="#90CAF9" Canvas.Left="50" Canvas.Top="80"/>
-            <Ellipse Width="100" Height="100" Fill="#81C784" Canvas.Left="200" Canvas.Top="150"/>
-            <Rectangle Width="200" Height="100" Fill="#FFEB3B" Canvas.Left="400" Canvas.Top="250"/>
-            <Polygon Points="300,350 350,400 250,400" Fill="#FF5722" Canvas.Left="300" Canvas.Top="200"/>
-        </Canvas>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Кнопка для входа в аккаунт -->
-        <Button Grid.Row="0" Content="Войти в аккаунт" Click="LoginButton_Click"/>
-
-        <!-- Кнопка для создания нового аккаунта -->
-        <Button Grid.Row="1" Content="Создать аккаунт" Click="RegisterButton_Click"/>
+        <Button Grid.Row="0" Content="Войти в аккаунт" Margin="10" Padding="10"
+                Click="LoginButton_Click"/>
+        <Button Grid.Row="1" Content="Создать аккаунт" Margin="10" Padding="10"
+                Click="RegisterButton_Click"/>
     </Grid>
-
 </Window>

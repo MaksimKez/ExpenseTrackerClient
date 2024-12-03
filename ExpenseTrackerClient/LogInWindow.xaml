@@ -6,163 +6,66 @@
         xmlns:local="clr-namespace:ExpenseTrackerClient"
         mc:Ignorable="d"
         Title="LogInWindow" Height="450" Width="800">
-    <Grid Background="LightSkyBlue">
-    <!-- Геометрические фигуры на фоне -->
-    <Canvas>
-        <!-- Закругленные прямоугольники с мягкими оттенками -->
-        <Rectangle Fill="#ADD8E6" Width="250" Height="150" RadiusX="30" RadiusY="30" Canvas.Left="100" Canvas.Top="100" RenderTransformOrigin="0.5,0.5">
-            <Rectangle.RenderTransform>
-                <RotateTransform Angle="15" />
-            </Rectangle.RenderTransform>
-        </Rectangle>
-        <Rectangle Fill="#B0E0E6" Width="200" Height="120" RadiusX="20" RadiusY="20" Canvas.Left="400" Canvas.Top="50" RenderTransformOrigin="0.5,0.5">
-            <Rectangle.RenderTransform>
-                <RotateTransform Angle="-20" />
-            </Rectangle.RenderTransform>
-        </Rectangle>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <!-- Многоугольники с мягкими оттенками -->
-        <Polygon Fill="#B0E0E6" Points="350,150 400,250 450,150" Canvas.Left="600" Canvas.Top="200" RenderTransformOrigin="0.5,0.5">
-            <Polygon.RenderTransform>
-                <RotateTransform Angle="25" />
-            </Polygon.RenderTransform>
-        </Polygon>
-    </Canvas>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-    <!-- Строки и столбцы -->
-    <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="*" />
-    </Grid.RowDefinitions>
+        <!-- Кнопка Назад -->
+        <Button Content="Назад"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="10"
+                Grid.Row="0"
+                Grid.Column="0"
+                Click="BackButton_Click" />
 
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="*" />
-    </Grid.ColumnDefinitions>
+        <!-- Лейбл для ввода имени пользователя -->
+        <Label Content="Имя пользователя:"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Right"
+               Margin="10"
+               Grid.Row="1"
+               Grid.Column="0" />
 
-    <!-- Кнопка Назад -->
-    <Button Content="Назад"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Margin="10"
-            Grid.Row="0"
-            Grid.Column="0"
-            Width="120"
-            Height="40"
-            Background="#FF6A6A"
-            Foreground="White"
-            BorderBrush="#FF4C4C"
-            BorderThickness="2"
-            Click="BackButton_Click">
-        <Button.Style>
-            <Style TargetType="Button">
-                <Style.Triggers>
-                    <EventTrigger RoutedEvent="Button.MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" From="#FF6A6A" To="#FF4C4C" Duration="0.3s" />
-                                <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" From="#FF4C4C" To="#FF2F2F" Duration="0.3s" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <EventTrigger RoutedEvent="Button.MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" From="#FF4C4C" To="#FF6A6A" Duration="0.3s" />
-                                <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" From="#FF2F2F" To="#FF4C4C" Duration="0.3s" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Style.Triggers>
-            </Style>
-        </Button.Style>
-    </Button>
-
-    <!-- Лейбл для ввода имени пользователя -->
-    <Label Content="Имя пользователя:"
-           VerticalAlignment="Center"
-           HorizontalAlignment="Right"
-           Margin="10"
-           Grid.Row="1"
-           Grid.Column="0"
-           FontSize="16" 
-           Foreground="#4682B4" />
-
-    <!-- Поле для ввода имени пользователя -->
-    <TextBox Name="UsernameTextBox"
-             Margin="10"
-             Grid.Row="1"
-             Grid.Column="1"
-             Padding="10"
-             FontSize="16"
-             BorderBrush="#4682B4"
-             BorderThickness="2"
-             Background="#F0F8FF" />
-
-    <!-- Лейбл для ввода пароля -->
-    <Label Content="Пароль:"
-           VerticalAlignment="Center"
-           HorizontalAlignment="Right"
-           Margin="10"
-           Grid.Row="2"
-           Grid.Column="0"
-           FontSize="16" 
-           Foreground="#4682B4" />
-
-    <!-- Поле для ввода пароля -->
-    <PasswordBox Name="PasswordBox"
+        <!-- Поле для ввода имени пользователя -->
+        <TextBox Name="UsernameTextBox"
                  Margin="10"
-                 Grid.Row="2"
-                 Grid.Column="1"
-                 Padding="10"
-                 FontSize="16"
-                 BorderBrush="#4682B4"
-                 BorderThickness="2"
-                 Background="#F0F8FF" />
+                 Grid.Row="1"
+                 Grid.Column="1" />
 
-    <!-- Кнопка для входа в аккаунт -->
-    <Button Content="Войти в аккаунт"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Margin="10"
-            Grid.Row="3"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Width="200"
-            Height="50"
-            Background="#32CD32"
-            Foreground="White"
-            BorderBrush="#228B22"
-            BorderThickness="2"
-            FontSize="18"
-            Click="LogInButton_Click">
-        <Button.Style>
-            <Style TargetType="Button">
-                <Style.Triggers>
-                    <EventTrigger RoutedEvent="Button.MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" From="#32CD32" To="#28A028" Duration="0.3s" />
-                                <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" From="#228B22" To="#1E7E1E" Duration="0.3s" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <EventTrigger RoutedEvent="Button.MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" From="#28A028" To="#32CD32" Duration="0.3s" />
-                                <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" From="#1E7E1E" To="#228B22" Duration="0.3s" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Style.Triggers>
-            </Style>
-        </Button.Style>
-    </Button>
-</Grid>
+        <!-- Лейбл для ввода пароля -->
+        <Label Content="Пароль:"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Right"
+               Margin="10"
+               Grid.Row="2"
+               Grid.Column="0" />
 
+        <!-- Поле для ввода пароля -->
+        <PasswordBox Name="PasswordBox"
+                     Margin="10"
+                     Grid.Row="2"
+                     Grid.Column="1" />
+
+        <!-- Кнопка для входа в аккаунт -->
+        <Button Content="Войти в аккаунт"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="10"
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Click="LogInButton_Click" />
+    </Grid>
 
 </Window>

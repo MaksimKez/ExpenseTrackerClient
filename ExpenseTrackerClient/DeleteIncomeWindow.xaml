@@ -40,7 +40,7 @@
                 <EventTrigger RoutedEvent="TextBlock.Loaded">
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Y" From="-20" To="0" Duration="0.5s" EasingFunction="BounceEase" />
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Y" From="-20" To="0" Duration="500"/>
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -57,16 +57,16 @@
                             <EventTrigger RoutedEvent="Button.MouseEnter">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" From="#FF7F7F" To="#FF5C5C" Duration="0.3s" />
-                                        <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" From="#FF4C4C" To="#FF2F2F" Duration="0.3s" />
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" From="#FF7F7F" To="#FF5C5C" Duration="500" />
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" From="#FF4C4C" To="#FF2F2F" Duration="500" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                             <EventTrigger RoutedEvent="Button.MouseLeave">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" From="#FF5C5C" To="#FF7F7F" Duration="0.3s" />
-                                        <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" From="#FF2F2F" To="#FF4C4C" Duration="0.3s" />
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" From="#FF5C5C" To="#FF7F7F" Duration="500" />
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" From="#FF2F2F" To="#FF4C4C" Duration="500" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -83,16 +83,16 @@
                             <EventTrigger RoutedEvent="Button.MouseEnter">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" From="#32CD32" To="#28A028" Duration="0.3s" />
-                                        <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" From="#228B22" To="#1E7E1E" Duration="0.3s" />
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" From="#32CD32" To="#28A028" Duration="500" />
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" From="#228B22" To="#1E7E1E" Duration="500" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                             <EventTrigger RoutedEvent="Button.MouseLeave">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" From="#28A028" To="#32CD32" Duration="0.3s" />
-                                        <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" From="#1E7E1E" To="#228B22" Duration="0.3s" />
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" From="#28A028" To="#32CD32" Duration="500" />
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" From="#1E7E1E" To="#228B22" Duration="500" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>

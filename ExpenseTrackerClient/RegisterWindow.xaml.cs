@@ -58,4 +58,9 @@ public partial class RegisterWindow : Window
     {
         Close();
     }
+
+    private void BackButton_Click(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
 }
