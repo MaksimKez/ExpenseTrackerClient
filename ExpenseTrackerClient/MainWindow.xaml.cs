@@ -45,28 +45,23 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Ошибка при загрузке данных: {ex.Message}");
+            //  отобразить окно регистрации/входа
         }
     }
     
     private Guid GetBankAccountIdFromJson(string filePath)
     {
-        /*if (!File.Exists(filePath))
-        {
-            throw new ArgumentException("Файл с данными пользователя не найден.", filePath);
-        }*/
-
         var jsonData = File.ReadAllText(filePath);
 
         // Десериализуем JSON данные
-        var userAndAccountData = JsonConvert.DeserializeObject<UserAndAccountData>(jsonData);
+        var accountData = JsonConvert.DeserializeObject<AccountData>(jsonData);
 
-        if (userAndAccountData == null || userAndAccountData.BankAccountId == Guid.Empty)
+        if (accountData == null && accountData.BankAccountId == Guid.Empty)
         {
             throw new ArgumentException("Неверный формат файла JSON или отсутствует BankAccountId.");
         }
 
-        return userAndAccountData.BankAccountId;
+        return accountData.BankAccountId;
     }
 
 
@@ -141,7 +136,7 @@ public partial class MainWindow : Window
     
     private void RegisterButton_Click(object sender, RoutedEventArgs e)
     {
-        var registerWindow = new RegisterWindow(_httpClient, FILE_PATH);
+        var registerWindow = new RegisterWindow();
         registerWindow.Show();
     }
     

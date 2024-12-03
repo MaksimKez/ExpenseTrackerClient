@@ -1,7 +1,6 @@
 namespace ExpenseTrackerClient.Models;
 
-public class UserAndAccountData
+public class AccountData
 {
-    public Guid UserId { get; set; }
     public Guid BankAccountId { get; set; }
 }

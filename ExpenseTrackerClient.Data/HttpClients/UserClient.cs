@@ -45,7 +45,7 @@ public class UserClient : IUserClient
 
     }
 
-    // YES, it returns BAid, it is the WORST solution and ik i
+    // YES, it returns BAid, it is the WORST solution and ik it
     public async Task<Guid> LoginUserAsync(string username, string password)
     {
         var loginUserDto = new LoginUserDto
