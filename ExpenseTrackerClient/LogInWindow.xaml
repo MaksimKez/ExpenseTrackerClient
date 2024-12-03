@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ExpenseTrackerClient"
         mc:Ignorable="d"
         Title="LogInWindow" Height="450" Width="800">
-    <Grid Background="LightSkyBlue" Margin="10">
+    <Grid Background="LightSkyBlue">
     <!-- Геометрические фигуры на фоне -->
     <Canvas>
         <!-- Закругленные прямоугольники с мягкими оттенками -->

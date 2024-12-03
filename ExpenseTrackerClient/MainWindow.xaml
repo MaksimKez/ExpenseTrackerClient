@@ -8,105 +8,97 @@
 
     <!-- Определяем ресурсы Material Design в одном блоке -->
     <Window.Resources>
-        <!-- Основной словарь темы Material Design -->
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <!-- Подключаем темную и светлую темы Material Design -->
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml"/>
-                <!-- Подключаем стили для кнопок Material Design -->
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
+    <!-- Основной словарь темы Material Design -->
+    <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <!-- Подключаем темную и светлую темы Material Design -->
+            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml"/>
+            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml"/>
+            <!-- Подключаем стили для кнопок Material Design -->
+            <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
+        </ResourceDictionary.MergedDictionaries>
 
-            <!-- Стиль для карточек с равномерным радиусом углов -->
-            <Style TargetType="materialDesign:Card">
-                <Setter Property="UniformCornerRadius" Value="10" />
-            </Style>
+        <!-- Стиль для карточек с равномерным радиусом углов -->
+        <Style TargetType="materialDesign:Card">
+            <Setter Property="UniformCornerRadius" Value="10" />
+        </Style>
 
-            <!-- Стиль для кнопок с равномерным радиусом углов -->
-            <Style TargetType="Button">
-                <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="10" />
-            </Style>
-        </ResourceDictionary>
-    </Window.Resources>
+        <!-- Стиль для кнопок с равномерным радиусом углов -->
+        <Style TargetType="Button">
+            <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="10" />
+        </Style>
+    </ResourceDictionary>
+</Window.Resources>
 
-    <!-- Основное содержимое окна -->
-    <materialDesign:DrawerHost>
-        <!-- Левая выезжающая панель -->
-        <materialDesign:DrawerHost.LeftDrawerContent>
-            <StackPanel Margin="20">
-                <Button Content="Выйти из аккаунта" Width="150" Margin="0,10" 
-                        Style="{StaticResource MaterialDesignFlatButton}" 
-                        Click="LogOutButton_Click"/>
-                
-                <Button Content="Добавить доход" Width="150" Margin="0,10" 
-                        Style="{StaticResource MaterialDesignFlatButton}" 
-                        Click="AddIncomeAsync"/>
-                
-                <Button Content="Добавить расход" Width="150" Margin="0,10" 
-                        Style="{StaticResource MaterialDesignFlatButton}" 
-                        Click="AddExpenseAsync"/>
-            </StackPanel>
-        </materialDesign:DrawerHost.LeftDrawerContent>
-
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <StackPanel Orientation="Horizontal" Grid.Row="0" Background="#3F51B5" Height="50">
-                <Button Content="☰" Width="50" Background="Transparent" Foreground="Azure"
-                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" 
-                        CommandParameter="Left"
-                        Margin="10,0,0,0"/>
-                <TextBlock Text="Expense Tracker" VerticalAlignment="Center" Foreground="White" FontSize="18" Margin="10,0,0,0"/>
-            </StackPanel>
-
+<!-- Основное содержимое окна -->
+<materialDesign:DrawerHost Background="#F5F5F5">
+    <!-- Левая выезжающая панель -->
+    <materialDesign:DrawerHost.LeftDrawerContent>
+        <StackPanel Margin="20">
+            <Button Content="Выйти из аккаунта" Width="150" Margin="0,10" 
+                    Style="{StaticResource MaterialDesignFlatButton}" 
+                    Click="LogOutButton_Click"/>
             
-            <Grid Grid.Row="1" Margin="10,20">
-                <Grid>
-                    <!-- Определяем два столбца, которые растягиваются по размеру окна -->
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" /> <!-- Колонка для доходов -->
-                        <ColumnDefinition Width="*" /> <!-- Колонка для расходов -->
-                    </Grid.ColumnDefinitions>
+            <Button Content="Добавить доход" Width="150" Margin="0,10" 
+                    Style="{StaticResource MaterialDesignFlatButton}" 
+                    Click="AddIncomeAsync"/>
+            
+            <Button Content="Добавить расход" Width="150" Margin="0,10" 
+                    Style="{StaticResource MaterialDesignFlatButton}" 
+                    Click="AddExpenseAsync"/>
+        </StackPanel>
+    </materialDesign:DrawerHost.LeftDrawerContent>
 
-                    <ListBox Name="IncomesListBox" Grid.Column="0" Margin="10" MouseDoubleClick="RemoveIncomeAsync">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <!-- Display the Title in Bold -->
-                                    <TextBlock Text="{Binding Title}" FontWeight="Bold" />
-                                    <!-- Display the Sum (decimal) -->
-                                    <TextBlock Text="{Binding Sum, StringFormat=C0}" />
-                                    <!-- Display the CreatedAt (DateTime) -->
-                                    <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:MM/dd/yyyy HH:mm}}" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Background="#3F51B5" Height="50">
+            <Button Content="☰" Width="50" Background="Transparent" Foreground="Azure"
+                    Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" 
+                    CommandParameter="Left"
+                    Margin="10,0,0,0"/>
+            <TextBlock Text="Expense Tracker" VerticalAlignment="Center" Foreground="White" FontSize="18" Margin="10,0,0,0"/>
+        </StackPanel>
 
-                    <!-- Список расходов справа -->
-                    <ListBox Name="ExpensesListBox" Grid.Column="1" Margin="10" MouseDoubleClick="RemoveExpenseAsync">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <!-- Display the Title in Bold -->
-                                    <TextBlock Text="{Binding Title}" FontWeight="Bold" />
-                                    <!-- Display the Sum (decimal) -->
-                                    <TextBlock Text="{Binding Sum, StringFormat=C0}" />
-                                    <!-- Display the CreatedAt (DateTime) -->
-                                    <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:MM/dd/yyyy HH:mm}}" />
+        <Grid Grid.Row="1" Margin="10,20">
+            <Grid>
+                <!-- Определяем два столбца, которые растягиваются по размеру окна -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" /> <!-- Колонка для доходов -->
+                    <ColumnDefinition Width="*" /> <!-- Колонка для расходов -->
+                </Grid.ColumnDefinitions>
 
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
+                <!-- Список доходов слева -->
+                <ListBox Name="IncomesListBox" Grid.Column="0" Margin="10" MouseDoubleClick="RemoveIncomeAsync" Background="#E8F5E9" BorderBrush="#388E3C" BorderThickness="1">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Title}" FontWeight="Bold" Foreground="#388E3C"/>
+                                <TextBlock Text="{Binding Sum, StringFormat=C0}" Foreground="#388E3C"/>
+                                <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:MM/dd/yyyy HH:mm}}" Foreground="#388E3C"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <!-- Список расходов справа -->
+                <ListBox Name="ExpensesListBox" Grid.Column="1" Margin="10" MouseDoubleClick="RemoveExpenseAsync" Background="#FFEBEE" BorderBrush="#D32F2F" BorderThickness="1">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Title}" FontWeight="Bold" Foreground="#D32F2F"/>
+                                <TextBlock Text="{Binding Sum, StringFormat=C0}" Foreground="#D32F2F"/>
+                                <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:MM/dd/yyyy HH:mm}}" Foreground="#D32F2F"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Grid>
         </Grid>
-    </materialDesign:DrawerHost>
+    </Grid>
+</materialDesign:DrawerHost>
 </Window>
