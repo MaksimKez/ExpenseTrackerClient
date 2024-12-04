@@ -4,3 +4,7 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 .idea
+.vs/kursClient/FileContentIndex
+*.wsuo
+.vs/kursClient/v17
+.vs
