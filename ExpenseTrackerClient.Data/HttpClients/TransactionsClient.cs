@@ -11,7 +11,7 @@ using Models;
 
 public class TransactionsClient : ITransactionClient
 {   
-    private const string CONNECTION_STRING = "https://localhost:44388/";
+    private const string CONNECTION_STRING = "https://localhost:7213/";
     private readonly HttpClient _httpClient;
     
     // YES Ik it is also very bad :)
