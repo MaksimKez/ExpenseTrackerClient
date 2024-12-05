@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ExpenseTrackerClient"
         mc:Ignorable="d"
         Title="DeleteExpenseWindow" Height="450" Width="800">
-    <Grid Background="AliceBlue" Margin="10">
+    <Grid Background="PaleTurquoise" Margin="10">
     <!-- Фон с геометрическими фигурами, случайно расположенными -->
     <Canvas>
         <!-- Закругленные прямоугольники с мягкими оттенками -->

@@ -8,6 +8,7 @@
         xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
         wpf:ColorZoneAssist.Mode="PrimaryDark"
         mc:Ignorable="d"
+        Background="PaleTurquoise"
         Title="RegisterWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -23,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Кнопка Назад -->
-        <Button Content="Назад"
+        <Button Content="Назад" FontSize="14" Background="Tomato"
                 Margin="10"
                 Padding="5"
                 HorizontalAlignment="Left"
@@ -43,7 +44,7 @@
                    VerticalAlignment="Center" />
 
         <!-- Лейбл для ввода имени -->
-        <TextBlock Text="Имя пользователя:"
+        <TextBlock Text="Имя пользователя:" FontSize="16"
                    VerticalAlignment="Center"
                    Margin="10"
                    Grid.Row="1"
@@ -56,7 +57,7 @@
                  Grid.Column="1" />
 
         <!-- Лейбл для ввода пароля -->
-        <TextBlock Text="Пароль:"
+        <TextBlock Text="Пароль:" FontSize="16"
                    VerticalAlignment="Center"
                    Margin="10"
                    Grid.Row="2"
@@ -69,7 +70,7 @@
                      Grid.Column="1" />
 
         <!-- Кнопка Регистрация -->
-        <Button Content="Регистрация"
+        <Button Content="Регистрация" FontSize="14" Background="YellowGreen"
                 Margin="10"
                 Padding="5"
                 Grid.Row="3"
