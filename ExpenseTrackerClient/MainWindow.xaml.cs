@@ -161,10 +161,10 @@ public partial class MainWindow : Window
                 _incomes = new ObservableCollection<Income>(_incomes.OrderBy<Income, object>(x => x.Date)); // Встроенная сортировка
                 _expenses = new ObservableCollection<Expense>(_expenses.OrderBy(x => x.Date)); // Встроенная сортировка
                 break; 
-            /*case "Category":
-                BubbleSort(Incomes); // Пузырьковая сортировка
-                BubbleSort(Expenses); // Пузырьковая сортировка
-                break;*/ 
+            case "Category":
+                BubbleSort(_incomes); // Пузырьковая сортировка
+                BubbleSort(_expenses); // Пузырьковая сортировка
+                break;
             case "Amount": 
                 ShakerSort(_incomes); // Шейкерная сортировка
                 ShakerSort(_expenses); // Шейкерная сортировка
@@ -174,28 +174,34 @@ public partial class MainWindow : Window
         DataContext = this; 
     }
 
-    private void BubbleSort(ObservableCollection<Income> records)
+    public static void BubbleSort(IncomeSourceEnum[] array)
     {
-        for (int i = 0; i < records.Count - 1; i++)
+        int n = array.Length;
+        for (int i = 0; i < n - 1; i++)
         {
-            for (int j = 0; j < records.Count - i - 1; j++)
+            for (int j = 0; j < n - 1 - i; j++)
             {
-                if (string.Compare(records[j].IncomeSource, records[j + 1].IncomeSource, StringComparison.Ordinal) > 0)
+                if (array[j] > array[j + 1])
                 {
-                    var temp = records[j]; records[j] = records[j + 1]; records[j + 1] = temp;
+                    IncomeSourceEnum temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                 }
             }
         }
     }
-    private void BubbleSort(ObservableCollection<Expense> records)
+    public static void BubbleSort(ExpenseSourceEnum[] array)
     {
-        for (int i = 0; i < records.Count - 1; i++)
+        int n = array.Length;
+        for (int i = 0; i < n - 1; i++)
         {
-            for (int j = 0; j < records.Count - i - 1; j++)
+            for (int j = 0; j < n - 1 - i; j++)
             {
-                if (string.Compare(records[j].ExpenseSource, records[j + 1].ExpenseSource, StringComparison.Ordinal) > 0)
+                if (array[j] > array[j + 1])
                 {
-                    var temp = records[j]; records[j] = records[j + 1]; records[j + 1] = temp;
+                    ExpenseSourceEnum temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                 }
             }
         }

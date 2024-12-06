@@ -11,8 +11,8 @@
         <TextBlock Text="Выберите критерий сортировки:" Grid.Row="1" FontSize="18" Foreground="navy" HorizontalAlignment="Center" Margin="5"/>
                 <StackPanel>
                     <RadioButton Content="Дата" FontSize="16" Foreground="Navy" GroupName="SortCriteria" Margin="30,50" Name="DateRadioButton"/>
-                    <!-- <RadioButton Content="Категория" GroupName="SortCriteria" Margin="5" Name="CategoryRadioButton"/> -->
-                    <RadioButton Content="Сумма" FontSize="16" Foreground="Navy" GroupName="SortCriteria" Margin="30, -10" Name="AmountRadioButton"/>
+                    <RadioButton Content="Категория" FontSize="16" Foreground="Navy" GroupName="SortCriteria" Margin="30, -10" Name="CategoryRadioButton"/>
+                    <RadioButton Content="Сумма" FontSize="16" Foreground="Navy" GroupName="SortCriteria" Margin="30, -30" Name="AmountRadioButton"/>
                 </StackPanel>
         <Button Content="OK" Foreground="navy" Background="YellowGreen" Width="75" Height="30" Click="OkButton_Click" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
     </Grid>
