@@ -143,4 +143,116 @@ public partial class MainWindow : Window
         SearchFilterWindow filterWindow = new SearchFilterWindow();
         filterWindow.ShowDialog();
     }
+
+    private void SortButton_Click(object sender, RoutedEventArgs e)
+    {
+        SortCriteriaWindow sortWindow = new SortCriteriaWindow();
+        if (sortWindow.ShowDialog() == true)
+        {
+            SortRecords(sortWindow.SelectedCriteria);
+        }
+    }
+    
+    private void SortRecords(string criteria) 
+    { 
+        switch (criteria) 
+        { 
+            case "Date": 
+                Incomes = new ObservableCollection<Income>(Incomes.OrderBy(x => x.Date)); // Встроенная сортировка
+                Expenses = new ObservableCollection<Expense>(Expenses.OrderBy(x => x.Date)); // Встроенная сортировка
+                break; 
+            /*case "Category":
+                BubbleSort(Incomes); // Пузырьковая сортировка
+                BubbleSort(Expenses); // Пузырьковая сортировка
+                break;*/ 
+            case "Amount": 
+                ShakerSort(Incomes); // Шейкерная сортировка
+                ShakerSort(Expenses); // Шейкерная сортировка
+                break; 
+        } 
+        DataContext = null; 
+        DataContext = this; 
+    }
+
+    private void BubbleSort(ObservableCollection<Income> records)
+    {
+        for (int i = 0; i < records.Count - 1; i++)
+        {
+            for (int j = 0; j < records.Count - i - 1; j++)
+            {
+                if (string.Compare(records[j].Category, records[j + 1].Category, StringComparison.Ordinal) > 0)
+                {
+                    var temp = records[j]; records[j] = records[j + 1]; records[j + 1] = temp;
+                }
+            }
+        }
+    }
+    private void BubbleSort(ObservableCollection<Expense> records)
+    {
+        for (int i = 0; i < records.Count - 1; i++)
+        {
+            for (int j = 0; j < records.Count - i - 1; j++)
+            {
+                if (string.Compare(records[j].Category, records[j + 1].Category, StringComparison.Ordinal) > 0)
+                {
+                    var temp = records[j]; records[j] = records[j + 1]; records[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    private void ShakerSort(ObservableCollection<Income> records)
+    {
+        int left = 0; int right = records.Count - 1;
+        while (left < right)
+        {
+            for (int i = left; i < right; i++)
+            {
+                if (records[i].Amount > records[i + 1].Amount)
+                {
+                    var temp = records[i]; records[i] = records[i + 1]; records[i + 1] = temp;
+                }
+            } 
+            right--;
+            for (int i = right; i > left; i--)
+            {
+                if (records[i - 1].Amount > records[i].Amount)
+                {
+                    var temp = records[i - 1]; records[i - 1] = records[i]; records[i] = temp;
+                }
+            } 
+            left++;
+        }
+    }
+
+    private void ShakerSort(ObservableCollection<Expense> records)
+    {
+        int left = 0;
+        int right = records.Count - 1;
+        while (left < right)
+        {
+            for (int i = left; i < right; i++)
+            {
+                if (records[i].Amount > records[i + 1].Amount)
+                {
+                    var temp = records[i];
+                    records[i] = records[i + 1];
+                    records[i + 1] = temp;
+                }
+            }
+
+            right--;
+            for (int i = right; i > left; i--)
+            {
+                if (records[i - 1].Amount > records[i].Amount)
+                {
+                    var temp = records[i - 1];
+                    records[i - 1] = records[i];
+                    records[i] = temp;
+                }
+            }
+
+            left++;
+        }
+    }
 }

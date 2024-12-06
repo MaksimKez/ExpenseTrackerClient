@@ -1,0 +1,18 @@
+<Window x:Class="ExpenseTrackerClient.SortCriteriaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:ExpenseTrackerClient"
+        mc:Ignorable="d"
+        Title="SortCriteriaWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <TextBlock Text="Выберите критерий сортировки:" Margin="5"/>
+            <StackPanel>
+                <RadioButton Content="Дата" GroupName="SortCriteria" Margin="5" Name="DateRadioButton"/>
+                <!-- <RadioButton Content="Категория" GroupName="SortCriteria" Margin="5" Name="CategoryRadioButton"/> -->
+                <RadioButton Content="Сумма" GroupName="SortCriteria" Margin="5" Name="AmountRadioButton"/>
+            </StackPanel>
+        <Button Content="OK" Width="75" Height="30" Click="OkButton_Click" Margin="10" HorizontalAlignment="Right"/>
+    </Grid>
+</Window>

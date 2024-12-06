@@ -31,8 +31,8 @@
                 Grid.Row="0" Grid.Column="0"
                 Click="BackButton_Click" />
 
-        <!-- Заголовок But i havenot russian pleas rename this -->
-        <TextBlock Text="Регистрация пользователя"
+        <!-- Заголовок -->
+        <TextBlock Text="Вход пользователя"
                    Foreground="Navy"
                    FontSize="20" FontWeight="Bold"
                    Margin="10"
