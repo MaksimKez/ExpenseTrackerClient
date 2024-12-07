@@ -5,14 +5,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ExpenseTrackerClient"
         mc:Ignorable="d"
-        Title="SortCriteriaWindow" Height="450" Width="800">
+        Background="PaleTurquoise"
+        Title="SortCriteriaWindow" Height="250" Width="400">
     <Grid Margin="10">
-        <TextBlock Text="Выберите критерий сортировки:" Margin="5"/>
-            <StackPanel>
-                <RadioButton Content="Дата" GroupName="SortCriteria" Margin="5" Name="DateRadioButton"/>
-                <!-- <RadioButton Content="Категория" GroupName="SortCriteria" Margin="5" Name="CategoryRadioButton"/> -->
-                <RadioButton Content="Сумма" GroupName="SortCriteria" Margin="5" Name="AmountRadioButton"/>
-            </StackPanel>
-        <Button Content="OK" Width="75" Height="30" Click="OkButton_Click" Margin="10" HorizontalAlignment="Right"/>
+        <TextBlock Text="Выберите критерий сортировки:" Grid.Row="1" FontSize="18" Foreground="navy" HorizontalAlignment="Center" Margin="5"/>
+                <StackPanel>
+                    <RadioButton Content="Дата" FontSize="16" Foreground="Navy" GroupName="SortCriteria" Margin="30,50" Name="DateRadioButton"/>
+                    <!-- <RadioButton Content="Категория" GroupName="SortCriteria" Margin="5" Name="CategoryRadioButton"/> -->
+                    <RadioButton Content="Сумма" FontSize="16" Foreground="Navy" GroupName="SortCriteria" Margin="30, -10" Name="AmountRadioButton"/>
+                </StackPanel>
+        <Button Content="OK" Foreground="navy" Background="YellowGreen" Width="75" Height="30" Click="OkButton_Click" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>

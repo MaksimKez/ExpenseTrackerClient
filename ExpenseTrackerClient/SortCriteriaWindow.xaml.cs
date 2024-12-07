@@ -1,3 +1,5 @@
+using System.Windows;
+
 namespace ExpenseTrackerClient;
 
 public partial class SortCriteriaWindow : System.Windows.Window

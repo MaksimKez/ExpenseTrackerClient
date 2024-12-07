@@ -1,3 +1,7 @@
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+
 namespace ExpenseTrackerClient;
 
 public partial class SearchResultsWindow : System.Windows.Window
@@ -35,4 +39,25 @@ public partial class SearchResultsWindow : System.Windows.Window
             ResultsListBox.Items.Add($"Расходы: Коммунальные услуги | Дата: {_selectedDate} | Сумма: {_selectedAmount} | Категория: {_selectedCategory}");
         }
     }
+    private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+    {
+        TextBox textBox = sender as TextBox;
+        if (textBox.Text == "Type your search here...")
+        {
+            textBox.Text = "";
+            textBox.Foreground = new SolidColorBrush(Colors.Black);
+        }
+    }
+
+    private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+    {
+        TextBox textBox = sender as TextBox;
+        if (string.IsNullOrWhiteSpace(textBox.Text))
+        {
+            textBox.Text = "Type your search here...";
+            textBox.Foreground = new SolidColorBrush(Colors.Gray);
+        }
+    }
+
+
 }

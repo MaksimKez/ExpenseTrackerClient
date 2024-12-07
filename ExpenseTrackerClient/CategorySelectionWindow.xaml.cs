@@ -1,3 +1,5 @@
+using System.Windows;
+
 namespace ExpenseTrackerClient;
 
 public partial class CategorySelectionWindow : System.Windows.Window
@@ -30,19 +32,16 @@ public partial class CategorySelectionWindow : System.Windows.Window
         }
     }
 
-        private void OkButton_Click(object sender, RoutedEventArgs e)
+    private void OkButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (CategoryListBox.SelectedItem != null)
         {
-            if (CategoryListBox.SelectedItem != null)
-            {
-                SelectedCategory = CategoryListBox.SelectedItem.ToString();
-                this.DialogResult = true;
-            }
-            else
-            {
-                MessageBox.Show("Пожалуйста, выберите категорию.");
-            }
+            SelectedCategory = CategoryListBox.SelectedItem.ToString();
+            this.DialogResult = true;
+        }
+        else
+        {
+            MessageBox.Show("Пожалуйста, выберите категорию.");
         }
     }
-}
-
 }

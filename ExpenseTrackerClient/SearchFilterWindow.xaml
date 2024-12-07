@@ -7,9 +7,6 @@
         mc:Ignorable="d"
         Background="PaleTurquoise"
         Title="SearchFilterWindow" Height="450" Width="800">
-    <Window.Resources>
-        <local:EmptyTextToVisibilityConverter x:Key="EmptyTextToVisibilityConverter"/>
-    </Window.Resources>
     <Grid>
         <Canvas>
             <!-- Закругленные прямоугольники с мягкими оттенками -->
@@ -43,30 +40,32 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Выберите категорию поиска:" Grid.Row="0" Grid.ColumnSpan="2" Margin="5"/>
-        <CheckBox Content="Доходы" Name="IncomeCheckBox" Grid.Row="1" Grid.Column="0" Margin="5"/>
-        <CheckBox Content="Расходы" Name="ExpenseCheckBox" Grid.Row="1" Grid.Column="1" Margin="5"/>
+        <TextBlock Text="Выберите категорию поиска:" FontSize="20" Foreground="Navy" HorizontalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2" Margin="10"/>
+        <CheckBox Content="Доходы" FontSize="16" Foreground="Navy" Name="IncomeCheckBox" Grid.Row="1" Grid.Column="0" Margin="10"/>
+        <CheckBox Content="Расходы" FontSize="16" Foreground="navy" Name="ExpenseCheckBox" Grid.Row="1" Grid.Column="1" Margin="10"/>
 
-        <TextBlock Text="Выберите критерии поиска:" Grid.Row="2" Grid.ColumnSpan="2" Margin="5"/>
-        <StackPanel Grid.Row="3" Grid.Column="0" Margin="5">
-            <CheckBox Content="Дата" Name="DateCheckBox" Margin="5"/>
-            <DatePicker Name="DatePicker" Margin="5" IsEnabled="{Binding ElementName=DateCheckBox, Path=IsChecked}"/>
+        <TextBlock Text="Выберите критерии поиска:" HorizontalAlignment="Center" FontSize="20" Foreground="Navy" Grid.Row="2" Grid.ColumnSpan="2" Margin="10"/>
+        <StackPanel Grid.Row="3" Grid.Column="0" Margin="10">
+            <CheckBox Content="Дата" FontSize="16" Foreground="navy" Name="DateCheckBox" Margin="5"/>
+            <DatePicker Name="DatePicker"  Margin="5" IsEnabled="{Binding ElementName=DateCheckBox, Path=IsChecked}"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" Margin="5">
-             <CheckBox Content="Сумма" Name="AmountCheckBox" Margin="5"/> 
-             <Grid>
-                  <TextBox Name="AmountTextBox" Margin="5" IsEnabled="{Binding ElementName=AmountCheckBox, Path=IsChecked}"/>
-                  <TextBlock Text="Введите сумму" Foreground="Gray" Margin="5" 
+             <CheckBox Content="Сумма" FontSize="16" Foreground="navy" Name="AmountCheckBox" Margin="5"/> 
+             <Grid Grid.Column="1">
+                  <TextBox Name="AmountTextBox" Margin="9" IsEnabled="{Binding ElementName=AmountCheckBox, Path=IsChecked}"/>
+                  <TextBlock Text="Введите сумму" FontSize="15" Foreground="Gray" Margin="9" 
                              VerticalAlignment="Center" IsHitTestVisible="False"
                              Visibility="{Binding Text, ElementName=AmountTextBox, Converter={StaticResource EmptyTextToVisibilityConverter}}"/>
              </Grid>
         </StackPanel>
-        <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Margin="5">
-            <CheckBox Content="Категория" Name="CategoryCheckBox" Margin="5"/>
-            <Button Content="Выбрать категорию" Margin="5" IsEnabled="{Binding ElementName=CategoryCheckBox, Path=IsChecked}" Click="SelectCategoryButton_Click"/>
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="3" Margin="5" VerticalAlignment="Center" >
+            <CheckBox Grid.Row="5" Content="Категория" Foreground="navy" FontSize="16" Name="CategoryCheckBox" Margin="5"/>
+            <Button Content="Выбрать категорию" FontSize="14" Margin="5" IsEnabled="{Binding ElementName=CategoryCheckBox, Path=IsChecked}" Click="SelectCategoryButton_Click"/>
         </StackPanel>
 
-        <Button Content="Найти" Width="100" Height="30" Click="SearchButton_Click" Grid.Row="5" Grid.ColumnSpan="2" Margin="5" HorizontalAlignment="Center"/>
-
+        <Button Content="Найти" FontSize="16" Foreground="navy" Background="YellowGreen"
+                Width="100" Height="30" 
+                Click="SearchButton_Click"
+                Grid.ColumnSpan="2" Grid.Row="5" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>

@@ -158,16 +158,16 @@ public partial class MainWindow : Window
         switch (criteria) 
         { 
             case "Date": 
-                Incomes = new ObservableCollection<Income>(Incomes.OrderBy(x => x.Date)); // Встроенная сортировка
-                Expenses = new ObservableCollection<Expense>(Expenses.OrderBy(x => x.Date)); // Встроенная сортировка
+                _incomes = new ObservableCollection<Income>(_incomes.OrderBy<Income, object>(x => x.Date)); // Встроенная сортировка
+                _expenses = new ObservableCollection<Expense>(_expenses.OrderBy(x => x.Date)); // Встроенная сортировка
                 break; 
             /*case "Category":
                 BubbleSort(Incomes); // Пузырьковая сортировка
                 BubbleSort(Expenses); // Пузырьковая сортировка
                 break;*/ 
             case "Amount": 
-                ShakerSort(Incomes); // Шейкерная сортировка
-                ShakerSort(Expenses); // Шейкерная сортировка
+                ShakerSort(_incomes); // Шейкерная сортировка
+                ShakerSort(_expenses); // Шейкерная сортировка
                 break; 
         } 
         DataContext = null; 
@@ -180,7 +180,7 @@ public partial class MainWindow : Window
         {
             for (int j = 0; j < records.Count - i - 1; j++)
             {
-                if (string.Compare(records[j].Category, records[j + 1].Category, StringComparison.Ordinal) > 0)
+                if (string.Compare(records[j].IncomeSource, records[j + 1].IncomeSource, StringComparison.Ordinal) > 0)
                 {
                     var temp = records[j]; records[j] = records[j + 1]; records[j + 1] = temp;
                 }
@@ -193,7 +193,7 @@ public partial class MainWindow : Window
         {
             for (int j = 0; j < records.Count - i - 1; j++)
             {
-                if (string.Compare(records[j].Category, records[j + 1].Category, StringComparison.Ordinal) > 0)
+                if (string.Compare(records[j].ExpenseSource, records[j + 1].ExpenseSource, StringComparison.Ordinal) > 0)
                 {
                     var temp = records[j]; records[j] = records[j + 1]; records[j + 1] = temp;
                 }
@@ -208,7 +208,7 @@ public partial class MainWindow : Window
         {
             for (int i = left; i < right; i++)
             {
-                if (records[i].Amount > records[i + 1].Amount)
+                if (records[i].Sum > records[i + 1].Sum)
                 {
                     var temp = records[i]; records[i] = records[i + 1]; records[i + 1] = temp;
                 }
@@ -216,7 +216,7 @@ public partial class MainWindow : Window
             right--;
             for (int i = right; i > left; i--)
             {
-                if (records[i - 1].Amount > records[i].Amount)
+                if (records[i - 1].Sum > records[i].Sum)
                 {
                     var temp = records[i - 1]; records[i - 1] = records[i]; records[i] = temp;
                 }
@@ -233,7 +233,7 @@ public partial class MainWindow : Window
         {
             for (int i = left; i < right; i++)
             {
-                if (records[i].Amount > records[i + 1].Amount)
+                if (records[i].Sum > records[i + 1].Sum)
                 {
                     var temp = records[i];
                     records[i] = records[i + 1];
@@ -244,7 +244,7 @@ public partial class MainWindow : Window
             right--;
             for (int i = right; i > left; i--)
             {
-                if (records[i - 1].Amount > records[i].Amount)
+                if (records[i - 1].Sum > records[i].Sum)
                 {
                     var temp = records[i - 1];
                     records[i - 1] = records[i];

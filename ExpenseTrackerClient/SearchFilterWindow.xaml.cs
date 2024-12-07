@@ -21,7 +21,7 @@ public partial class SearchFilterWindow : Window
         DateTime? selectDate = searchByDate ? DatePicker.SelectedDate : null;
         decimal selectedAmount = searchByAmount ? decimal.Parse(AmountTextBox.Text) : 0;
 
-        SearchResultWindow resultWindow = new SearchResultWindow(searchIncome, searchExpense, selectDate,
+        SearchResultsWindow resultWindow = new SearchResultsWindow(searchIncome, searchExpense, selectDate,
             selectedAmount, this.SelectedCategory);
         resultWindow.Show();
         this.Close();
@@ -29,7 +29,7 @@ public partial class SearchFilterWindow : Window
 
     private void SelectCategoryButton_Click(object sender, RoutedEventArgs e)
     { 
-        CategorySelectionWindow categoryWindow = new CategorySelectionWindow(IncomeCheckBox.IsChecked ?? false || ExpenseCheckBox.IsChecked ?? false;); 
+        CategorySelectionWindow categoryWindow = new CategorySelectionWindow(IncomeCheckBox.IsChecked ?? false || ExpenseCheckBox.IsChecked ?? false); 
         if (categoryWindow.ShowDialog() == true) 
         { 
             // Логика для получения выбранной категории из categoryWindow
