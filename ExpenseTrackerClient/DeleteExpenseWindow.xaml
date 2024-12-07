@@ -32,7 +32,7 @@
     <!-- Основной контент -->
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
         <!-- Текст вопроса -->
-        <TextBlock Text="Вы точно хотите удалить расход?" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="#4682B4" Margin="0,0,0,20">
+        <TextBlock Text="Вы точно хотите удалить расход?" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="navy" Margin="0,0,0,20">
             <TextBlock.RenderTransform>
                 <TranslateTransform X="0" Y="-20" />
             </TextBlock.RenderTransform>
