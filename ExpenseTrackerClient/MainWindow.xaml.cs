@@ -135,6 +135,137 @@ public partial class MainWindow : Window
     {
         var registerOrLogInWindow = new RegisterOrLogInWindow();
         registerOrLogInWindow.Show();
-        Close();
+        this.Close();
+    }
+
+    private void SearchButton_Click(object sender, RoutedEventArgs e)
+    {
+        SearchFilterWindow filterWindow = new SearchFilterWindow();
+        filterWindow.ShowDialog();
+    }
+
+    private void SortButton_Click(object sender, RoutedEventArgs e)
+    {
+        SortCriteriaWindow sortWindow = new SortCriteriaWindow();
+        if (sortWindow.ShowDialog() == true)
+        {
+            SortRecords(sortWindow.SelectedCriteria);
+        }
+    }
+    
+    private void ReportButton_Click(object sender, RoutedEventArgs e)
+    {
+        var reportWindow = new ReportWindow();
+        reportWindow.Show();
+        this.Close();
+    
+    private void SortRecords(string criteria) 
+    { 
+        switch (criteria) 
+        { 
+            case "Date": 
+                _incomes = new ObservableCollection<Income>(_incomes.OrderBy<Income, object>(x => x.Date)); // Встроенная сортировка
+                _expenses = new ObservableCollection<Expense>(_expenses.OrderBy(x => x.Date)); // Встроенная сортировка
+                break; 
+            case "Category":
+                BubbleSort(_incomes); // Пузырьковая сортировка
+                BubbleSort(_expenses); // Пузырьковая сортировка
+                break;
+            case "Amount": 
+                ShakerSort(_incomes); // Шейкерная сортировка
+                ShakerSort(_expenses); // Шейкерная сортировка
+                break; 
+        } 
+        DataContext = null; 
+        DataContext = this; 
+    }
+    
+    public static void BubbleSort(IncomeSourceEnum[] array)
+    {
+        int n = array.Length;
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = 0; j < n - 1 - i; j++)
+            {
+                if (array[j] > array[j + 1])
+                {
+                    IncomeSourceEnum temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+    
+    public static void BubbleSort(ExpenseSourceEnum[] array)
+    {
+        int n = array.Length;
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = 0; j < n - 1 - i; j++)
+            {
+                if (array[j] > array[j + 1])
+                {
+                    ExpenseSourceEnum temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    private void ShakerSort(ObservableCollection<Income> records)
+    {
+        int left = 0; int right = records.Count - 1;
+        while (left < right)
+        {
+            for (int i = left; i < right; i++)
+            {
+                if (records[i].Sum > records[i + 1].Sum)
+                {
+                    var temp = records[i]; records[i] = records[i + 1]; records[i + 1] = temp;
+                }
+            } 
+            right--;
+            for (int i = right; i > left; i--)
+            {
+                if (records[i - 1].Sum > records[i].Sum)
+                {
+                    var temp = records[i - 1]; records[i - 1] = records[i]; records[i] = temp;
+                }
+            } 
+            left++;
+        }
+    }
+
+    private void ShakerSort(ObservableCollection<Expense> records)
+    {
+        int left = 0;
+        int right = records.Count - 1;
+        while (left < right)
+        {
+            for (int i = left; i < right; i++)
+            {
+                if (records[i].Sum > records[i + 1].Sum)
+                {
+                    var temp = records[i];
+                    records[i] = records[i + 1];
+                    records[i + 1] = temp;
+                }
+            }
+
+            right--;
+            for (int i = right; i > left; i--)
+            {
+                if (records[i - 1].Sum > records[i].Sum)
+                {
+                    var temp = records[i - 1];
+                    records[i - 1] = records[i];
+                    records[i] = temp;
+                }
+            }
+
+            left++;
+        }
     }
 }
