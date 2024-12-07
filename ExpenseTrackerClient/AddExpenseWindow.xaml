@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ExpenseTrackerClient"
         mc:Ignorable="d"
         Title="AddExpenseWindow" Height="450" Width="800">
-    <Grid Background="LightBlue">
+    <Grid Background="LightSkyBlue">
     <!-- Фон с фигурами -->
      <Canvas>
         <!-- Овалы с разными цветами и углами -->
@@ -66,7 +66,7 @@
     <!-- Основной контент -->
     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,50,0,0">
         <!-- Заголовок -->
-        <TextBlock Text="Заголовок:" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
+        <TextBlock Text="Заголовок:"  Foreground="navy" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
         
         <!-- Поле ввода Заголовка -->
         <Border Background="#F0F8FF" BorderBrush="#87CEEB" BorderThickness="2" CornerRadius="5" Margin="0,5,0,15">
@@ -74,7 +74,7 @@
         </Border>
 
         <!-- Сумма -->
-        <TextBlock Text="Сумма:" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
+        <TextBlock Text="Сумма:" Foreground="navy" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
         
         <!-- Поле ввода Суммы -->
         <Border Background="#F0F8FF" BorderBrush="#87CEEB" BorderThickness="2" CornerRadius="5" Margin="0,5,0,15">
@@ -82,7 +82,7 @@
         </Border>
 
         <!-- Тип расхода -->
-        <TextBlock Text="Тип расхода:" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
+        <TextBlock Text="Тип расхода:"  Foreground="navy" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
         
         <!-- Выпадающий список -->
         <Border Background="#F0F8FF" BorderBrush="#87CEEB" BorderThickness="2" CornerRadius="5" Margin="0,5,0,15">
@@ -98,7 +98,7 @@
         </Border>
 
         <!-- Дата -->
-        <TextBlock Text="Расход совершен (дата):" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
+        <TextBlock Text="Расход совершен (дата):"  Foreground="navy" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
         
         <!-- Поле ввода Даты -->
         <Border Background="#F0F8FF" BorderBrush="#87CEEB" BorderThickness="2" CornerRadius="5" Margin="0,5,0,15">
@@ -107,7 +107,7 @@
 
         <!-- Кнопка -->
         <Button Content="Submit" Width="120" Height="40" VerticalAlignment="Center" Margin="0,10,0,0"
-                Background="#4682B4" Foreground="White" FontSize="16" FontWeight="Bold" BorderBrush="#5F9EA0" 
+                Background="SeaGreen" Foreground="White" FontSize="16" FontWeight="Bold" BorderBrush="#5F9EA0" 
                 BorderThickness="2" Click="OnSubmit" />
     </StackPanel>
 </Grid>

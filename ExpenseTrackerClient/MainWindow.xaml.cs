@@ -135,6 +135,12 @@ public partial class MainWindow : Window
     {
         var registerOrLogInWindow = new RegisterOrLogInWindow();
         registerOrLogInWindow.Show();
-        Close();
+        this.Close();
+    }
+
+    private void SearchButton_Click(object sender, RoutedEventArgs e)
+    {
+        SearchFilterWindow filterWindow = new SearchFilterWindow();
+        filterWindow.ShowDialog();
     }
 }

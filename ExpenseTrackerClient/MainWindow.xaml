@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Expense Tracker" Height="450" Width="800" Loaded="Window_Loaded"
-        Background="#FAFAFA"
+        Background="PaleTurquoise"
         materialDesign:ColorZoneAssist.Mode="PrimaryMid">
 
     <!-- Определяем ресурсы Material Design в одном блоке -->
@@ -35,17 +35,21 @@
     <!-- Левая выезжающая панель -->
     <materialDesign:DrawerHost.LeftDrawerContent>
         <StackPanel Margin="20">
-            <Button Content="Выйти из аккаунта" Width="150" Margin="0,10" 
+            <Button Content="Выйти из аккаунта"  Foreground="navy" Width="150" Margin="0,10" 
                     Style="{StaticResource MaterialDesignFlatButton}" 
                     Click="LogOutButton_Click"/>
             
-            <Button Content="Добавить доход" Width="150" Margin="0,10" 
+            <Button Content="Добавить доход"  Foreground="navy" Width="150" Margin="0,10" 
                     Style="{StaticResource MaterialDesignFlatButton}" 
                     Click="AddIncomeAsync"/>
             
-            <Button Content="Добавить расход" Width="150" Margin="0,10" 
+            <Button Content="Добавить расход" Width="150"  Foreground="navy" Margin="0,10" 
                     Style="{StaticResource MaterialDesignFlatButton}" 
                     Click="AddExpenseAsync"/>
+            
+            <Button Content="Добавить расход" Width="150"  Foreground="navy" Margin="0,10" 
+                    Style="{StaticResource MaterialDesignFlatButton}" 
+                    Click="SearchButton_Click"/>
         </StackPanel>
     </materialDesign:DrawerHost.LeftDrawerContent>
 
@@ -61,7 +65,9 @@
                     Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" 
                     CommandParameter="Left"
                     Margin="10,0,0,0"/>
-            <TextBlock Text="Expense Tracker" VerticalAlignment="Center" Foreground="White" FontSize="18" Margin="10,0,0,0"/>
+            <TextBlock Text="Expense Tracker" 
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3"
+                       Foreground="LemonChiffon" FontSize="20" Margin="280,0,0,0"/>
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="10,20">
@@ -78,6 +84,7 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding Title}" FontWeight="Bold" Foreground="#388E3C"/>
+                                <TextBlock Text="{Binding IncomeSource}" FontWeight="Bold" Foreground="#388E3C"/>
                                 <TextBlock Text="{Binding Sum, StringFormat=C0}" Foreground="#388E3C"/>
                                 <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:MM/dd/yyyy HH:mm}}" Foreground="#388E3C"/>
                             </StackPanel>
@@ -91,6 +98,7 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding Title}" FontWeight="Bold" Foreground="#D32F2F"/>
+                                <TextBlock Text="{Binding ExpenseSource}" FontWeight="Bold" Foreground="#388E3C"/>
                                 <TextBlock Text="{Binding Sum, StringFormat=C0}" Foreground="#D32F2F"/>
                                 <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:MM/dd/yyyy HH:mm}}" Foreground="#D32F2F"/>
                             </StackPanel>
