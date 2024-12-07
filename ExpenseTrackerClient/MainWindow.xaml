@@ -54,6 +54,10 @@
             <Button Content="Сортировка" Width="150"  Foreground="navy" Margin="0,10" 
                     Style="{StaticResource MaterialDesignFlatButton}" 
                     Click="SortButton_Click"/>
+            
+            <Button Content="Отчет" Width="150"  Foreground="navy" Margin="0,10" 
+                    Style="{StaticResource MaterialDesignFlatButton}" 
+                    Click="ReportButton_Click"/>
         </StackPanel>
     </materialDesign:DrawerHost.LeftDrawerContent>
 
@@ -83,7 +87,9 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Список доходов слева -->
-                <ListBox Name="IncomesListBox" Grid.Column="0" Margin="10" MouseDoubleClick="RemoveIncomeAsync" Background="#E8F5E9" BorderBrush="#388E3C" BorderThickness="1">
+                <ListBox Name="IncomesListBox" Grid.Column="0" Margin="10" 
+                         MouseDoubleClick="RemoveIncomeAsync" Background="#E8F5E9" 
+                         BorderBrush="#388E3C" BorderThickness="1">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
@@ -97,7 +103,9 @@
                 </ListBox>
 
                 <!-- Список расходов справа -->
-                <ListBox Name="ExpensesListBox" Grid.Column="1" Margin="10" MouseDoubleClick="RemoveExpenseAsync" Background="#FFEBEE" BorderBrush="#D32F2F" BorderThickness="1">
+                <ListBox Name="ExpensesListBox" Grid.Column="1" Margin="10" 
+                         MouseDoubleClick="RemoveExpenseAsync" 
+                         Background="#FFEBEE" BorderBrush="#D32F2F" BorderThickness="1">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>

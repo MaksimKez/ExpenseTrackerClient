@@ -10,19 +10,27 @@
     <!-- Геометрические фигуры на фоне -->
     <Canvas>
         <!-- Закругленные прямоугольники с мягкими оттенками -->
-        <Rectangle Fill="#B0E0E6" Width="250" Height="150" RadiusX="30" RadiusY="30" Canvas.Left="100" Canvas.Top="100" RenderTransformOrigin="0.5,0.5">
+        <Rectangle Fill="#B0E0E6" Width="250" Height="150" 
+                   RadiusX="30" RadiusY="30" 
+                   Canvas.Left="100" Canvas.Top="100" 
+                   RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
                 <RotateTransform Angle="45" />
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Rectangle Fill="#ADD8E6" Width="200" Height="120" RadiusX="20" RadiusY="20" Canvas.Left="400" Canvas.Top="50" RenderTransformOrigin="0.5,0.5">
+        <Rectangle Fill="#ADD8E6" Width="200" Height="120"
+                   RadiusX="20" RadiusY="20" 
+                   Canvas.Left="400" Canvas.Top="50"
+                   RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
                 <RotateTransform Angle="-20" />
             </Rectangle.RenderTransform>
         </Rectangle>
 
         <!-- Многоугольники с мягкими оттенками -->
-        <Polygon Fill="#B0E0E6" Points="350,150 400,250 450,150" Canvas.Left="600" Canvas.Top="200" RenderTransformOrigin="0.5,0.5">
+        <Polygon Fill="#B0E0E6" Points="350,150 400,250 450,150" 
+                 Canvas.Left="600" Canvas.Top="200" 
+                 RenderTransformOrigin="0.5,0.5">
             <Polygon.RenderTransform>
                 <RotateTransform Angle="30" />
             </Polygon.RenderTransform>
@@ -32,7 +40,9 @@
     <!-- Основной контент -->
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
         <!-- Текст вопроса -->
-        <TextBlock Text="Вы точно хотите удалить доход?" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="navy" Margin="0,0,0,20">
+        <TextBlock Text="Вы точно хотите удалить доход?" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   FontSize="18" FontWeight="Bold" Foreground="navy" Margin="0,0,0,20">
             <TextBlock.RenderTransform>
                 <TranslateTransform X="0" Y="-20" />
             </TextBlock.RenderTransform>
@@ -50,7 +60,9 @@
         <!-- Кнопки -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <!-- Кнопка "Нет" -->
-            <Button Content="Нет" Width="120" Height="45" Margin="10" FontSize="16" Background="#FF7F7F" Foreground="White" BorderBrush="#FF4C4C" BorderThickness="2" Click="OnNoClick">
+            <Button Content="Нет" Width="120" Height="45" Margin="10"
+                    FontSize="16" Background="#FF7F7F" Foreground="White" 
+                    BorderBrush="#FF4C4C" BorderThickness="2" Click="OnNoClick">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -76,7 +88,9 @@
             </Button>
 
             <!-- Кнопка "Да" -->
-            <Button Content="Да" Width="120" Height="45" Margin="10" FontSize="16" Background="#32CD32" Foreground="White" BorderBrush="#228B22" BorderThickness="2" Click="OnYesClick">
+            <Button Content="Да" Width="120" Height="45" Margin="10" 
+                    FontSize="16" Background="#32CD32" Foreground="White" 
+                    BorderBrush="#228B22" BorderThickness="2" Click="OnYesClick">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>

@@ -153,6 +153,12 @@ public partial class MainWindow : Window
         }
     }
     
+    private void ReportButton_Click(object sender, RoutedEventArgs e)
+    {
+        var reportWindow = new ReportWindow();
+        reportWindow.Show();
+        this.Close();
+    
     private void SortRecords(string criteria) 
     { 
         switch (criteria) 
@@ -173,7 +179,7 @@ public partial class MainWindow : Window
         DataContext = null; 
         DataContext = this; 
     }
-
+    
     public static void BubbleSort(IncomeSourceEnum[] array)
     {
         int n = array.Length;
@@ -190,6 +196,7 @@ public partial class MainWindow : Window
             }
         }
     }
+    
     public static void BubbleSort(ExpenseSourceEnum[] array)
     {
         int n = array.Length;

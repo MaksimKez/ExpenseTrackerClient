@@ -11,19 +11,27 @@
         <!-- Фон с геометрическими фигурами, случайно расположенными -->
         <Canvas>
             <!-- Закругленные прямоугольники с мягкими оттенками -->
-            <Rectangle Fill="#B0E0E6" Width="250" Height="150" RadiusX="30" RadiusY="30" Canvas.Left="100" Canvas.Top="100" RenderTransformOrigin="0.5,0.5">
+            <Rectangle Fill="#B0E0E6" Width="250" Height="150" 
+                       RadiusX="30" RadiusY="30" 
+                       Canvas.Left="100" Canvas.Top="100" 
+                       RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <RotateTransform Angle="45" />
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <Rectangle Fill="#ADD8E6" Width="200" Height="120" RadiusX="20" RadiusY="20" Canvas.Left="400" Canvas.Top="50" RenderTransformOrigin="0.5,0.5">
+            <Rectangle Fill="#ADD8E6" Width="200" Height="120" 
+                       RadiusX="20" RadiusY="20" 
+                       Canvas.Left="400" Canvas.Top="50" 
+                       RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <RotateTransform Angle="-20" />
                 </Rectangle.RenderTransform>
             </Rectangle>
 
             <!-- Многоугольники с мягкими оттенками -->
-            <Polygon Fill="#B0E0E6" Points="350,150 400,250 450,150" Canvas.Left="600" Canvas.Top="200" RenderTransformOrigin="0.5,0.5">
+            <Polygon Fill="#B0E0E6" Points="350,150 400,250 450,150" 
+                     Canvas.Left="600" Canvas.Top="200" 
+                     RenderTransformOrigin="0.5,0.5">
                 <Polygon.RenderTransform>
                     <RotateTransform Angle="30" />
                 </Polygon.RenderTransform>
