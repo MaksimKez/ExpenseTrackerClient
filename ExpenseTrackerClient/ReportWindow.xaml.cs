@@ -72,58 +72,132 @@ public partial class ReportWindow : System.Windows.Window
     } 
     private void GenerateReport()
     { 
+        // Create SaveFileDialog to get the file path
         var saveFileDialog = new SaveFileDialog
-        {
-            Filter = "Excel files (*.xlsx)|*.xlsx",
+        { 
+            Filter = "Excel files (*.xlsx)|*.xlsx", 
             FileName = "Отчет"
         };
-
+        
         if (saveFileDialog.ShowDialog() == true)
-        {
-            var file = new FileInfo(saveFileDialog.FileName);
-
-            using (var package = new ExcelPackage(file))
+        { 
+            var filePath = saveFileDialog.FileName; 
+            // Create and populate the Excel file
+            using (SpreadsheetDocument document = SpreadsheetDocument.Create(filePath, 
+                       DocumentFormat.OpenXml.SpreadsheetDocumentType.Workbook)) 
             { 
-                var worksheet = package.Workbook.Worksheets.Add("Доходы и Расходы"); 
+                WorkbookPart workbookPart = document.AddWorkbookPart(); 
+                workbookPart.Workbook = new Workbook(); 
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>(); 
+                worksheetPart.Worksheet = new Worksheet(new SheetData());
+                Sheets sheets = document.WorkbookPart.Workbook.AppendChild(new Sheets()); 
+                Sheet sheet = new Sheet() 
+                { 
+                    Id = document.WorkbookPart.GetIdOfPart(worksheetPart), 
+                    SheetId = 1, 
+                    Name = "Доходы и Расходы" 
+                }; 
                 
-                worksheet.Cells[1, 1].Value = "Категория";
-                worksheet.Cells[1, 2].Value = "Сумма";
-                worksheet.Cells[1, 3].Value = "Дата";
-                worksheet.Cells[1, 4].Value = "Тип"; 
-                worksheet.Cells[1, 5].Value = "Комментарий"; //Install-Package EPPlus
-
-                int row = 2; // Start from the second row
-
-                foreach (var income in _incomes)
+                sheets.Append(sheet); 
+                SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
+                
+                // Add header
+                row Row headerRow = new Row(); 
+                headerRow.Append( new Cell()
                 {
-                    worksheet.Cells[row, 1].Value = "Доход";
-                    worksheet.Cells[row, 2].Value = income.Sum;
-                    worksheet.Cells[row, 3].Value = income.Date;
-                    worksheet.Cells[row, 4].Value = income.IncomeSource;
-                    worksheet.Cells[row, 5].Value = income.Title; 
-                    row++;
-                }
-
+                    CellValue = new CellValue("Категория"),
+                     DataType = CellValues.String
+                }, 
+                    new Cell() 
+                    { 
+                        CellValue = new CellValue("Сумма"), 
+                        DataType = CellValues.String 
+                    }, 
+                    new Cell() 
+                    { 
+                        CellValue = new CellValue("Дата"), 
+                        DataType = CellValues.String 
+                    }, 
+                    new Cell() 
+                    { 
+                        CellValue = new CellValue("Тип"),
+                        DataType = CellValues.String
+                    }, 
+                    new Cell() 
+                    { 
+                        CellValue = new CellValue("Комментарий"), 
+                        DataType = CellValues.String 
+                    }
+                    );
+                sheetData.Append(headerRow); 
+                
+                // Add income data
+                foreach (var income in _incomes) 
+                { 
+                    Row row = new Row(); 
+                    row.Append( new Cell() 
+                        { 
+                            CellValue = new CellValue("Доход"), 
+                            DataType = CellValues.String 
+                        }, 
+                        new Cell()
+                        {
+                            CellValue = new CellValue(income.Sum.ToString()),
+                            DataType = CellValues.Number 
+                        }, 
+                        new Cell() 
+                        { 
+                            CellValue = new CellValue(income.Date), 
+                            DataType = CellValues.String 
+                        }, 
+                        new Cell() 
+                        { 
+                            CellValue = new CellValue(income.IncomeSource), 
+                            DataType = CellValues.String 
+                        }, 
+                        new Cell()
+                        {
+                            CellValue = new CellValue(income.Title), 
+                            DataType = CellValues.String 
+                        }
+                        ); 
+                    sheetData.Append(row); 
+                } 
+                
+                // Add expense data
                 foreach (var expense in _expenses)
                 {
-                    worksheet.Cells[row, 1].Value = "Расход";
-                    worksheet.Cells[row, 2].Value = expense.Sum;
-                    worksheet.Cells[row, 3].Value = expense.Date;
-                    worksheet.Cells[row, 4].Value = expense.ExpenseSource;
-                    worksheet.Cells[row, 5].Value = expense.Title; 
-                    row++;
-                }
-
-                try
-                {
-                    package.Save();
-                    MessageBox.Show("File saved successfully!");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error saving file: {ex.Message}");
-                }
+                    Row row = new Row();
+                    row.Append( new Cell()
+                        { 
+                            CellValue = new CellValue("Расход"),
+                            DataType = CellValues.String
+                        },
+                        new Cell()
+                        {
+                            CellValue = new CellValue(expense.Sum.ToString()),
+                            DataType = CellValues.Number
+                        },
+                        new Cell() 
+                        { 
+                            CellValue = new CellValue(expense.Date),
+                            DataType = CellValues.String 
+                        },
+                        new Cell()
+                        {
+                            CellValue = new CellValue(expense.ExpenseSource),
+                            DataType = CellValues.String 
+                        },
+                        new Cell()
+                        {
+                            CellValue = new CellValue(expense.Title),
+                            DataType = CellValues.String
+                        }
+                    );
+                    sheetData.Append(row);
+                } 
             }
+            MessageBox.Show("File saved successfully!");
         }
     }
 }
