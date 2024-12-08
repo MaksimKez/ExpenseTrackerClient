@@ -22,7 +22,7 @@
         <!-- Доходы -->
         <Border Grid.Row="0" Grid.Column="0" Background="LightBlue" CornerRadius="10" Margin="10" Padding="10">
             <StackPanel>
-                <TextBlock Text="Общая сумма доходов" FontSize="16" FontWeight="Bold" Margin="5" />
+                <TextBlock Text="Общая сумма доходов" Foreground="Navy" FontSize="16" FontWeight="Bold" Margin="5" />
                 <TextBlock Text="{Binding TotalIncome, StringFormat=C}" 
                            FontSize="20" FontWeight="Bold" Margin="5" />
             </StackPanel>
@@ -31,7 +31,7 @@
         <!-- Расходы -->
         <Border Grid.Row="0" Grid.Column="1" Background="LightBlue" CornerRadius="10" Margin="10" Padding="10">
             <StackPanel>
-                <TextBlock Text="Общая сумма расходов" FontSize="16" FontWeight="Bold" Margin="5" />
+                <TextBlock Text="Общая сумма расходов" Foreground="Navy" FontSize="16" FontWeight="Bold" Margin="5" />
                 <TextBlock Text="{Binding TotalExpense, StringFormat=C}" 
                            FontSize="20" FontWeight="Bold" Margin="5" />
             </StackPanel>
@@ -40,7 +40,7 @@
         <!-- Баланс -->
         <Border Grid.Row="0" Grid.Column="2" Background="LightBlue" CornerRadius="10" Margin="10" Padding="10">
             <StackPanel>
-                <TextBlock Text="Текущий баланс" FontSize="16" FontWeight="Bold" Margin="5" />
+                <TextBlock Text="Текущий баланс" Foreground="Navy" FontSize="16" FontWeight="Bold" Margin="5" />
                 <TextBlock Text="{Binding Balance, StringFormat=C}" 
                            FontSize="20" FontWeight="Bold" Margin="5" />
             </StackPanel>
@@ -48,7 +48,8 @@
 
         <!-- Кнопка отчета -->
         <Button Grid.Row="2" Grid.ColumnSpan="3" Content="Отчет"
-                Width="150" Height="40" Background="Navy" Foreground="White" 
+                Width="150" Height="40" FontSize="14"
+                Background="Navy" Foreground="White" 
                 Click="ReportButton_Click" HorizontalAlignment="Center" Margin="20" />
     </Grid>
 </Window>
