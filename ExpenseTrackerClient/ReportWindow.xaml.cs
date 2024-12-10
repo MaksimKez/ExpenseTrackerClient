@@ -11,6 +11,7 @@ using Microsoft.Win32;
 using Newtonsoft.Json;
 using OfficeOpenXml;
 using System.Collections.Generic;
+using System.Globalization;
 using DocumentFormat.OpenXml.Packaging; 
 using DocumentFormat.OpenXml.Spreadsheet;
 using OfficeOpenXml.Core.ExcelPackage; // Не забудьте установить пакет EPPlus для работы с Excel
@@ -102,7 +103,7 @@ public partial class ReportWindow : System.Windows.Window
                 SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
                 
                 // Add header
-                row Row headerRow = new Row(); 
+                Row headerRow = new Row(); 
                 headerRow.Append( new Cell()
                 {
                     CellValue = new CellValue("Категория"),
@@ -147,12 +148,12 @@ public partial class ReportWindow : System.Windows.Window
                         }, 
                         new Cell() 
                         { 
-                            CellValue = new CellValue(income.Date), 
+                            CellValue = new CellValue(income.CreatedAt), 
                             DataType = CellValues.String 
                         }, 
                         new Cell() 
-                        { 
-                            CellValue = new CellValue(income.IncomeSource), 
+                        {
+                            CellValue = new CellValue(income.IncomeSource.ToString()), 
                             DataType = CellValues.String 
                         }, 
                         new Cell()
@@ -175,17 +176,19 @@ public partial class ReportWindow : System.Windows.Window
                         },
                         new Cell()
                         {
-                            CellValue = new CellValue(expense.Sum.ToString()),
+                            CellValue = new CellValue(expense.Sum),
                             DataType = CellValues.Number
                         },
                         new Cell() 
                         { 
-                            CellValue = new CellValue(expense.Date),
+                            CellValue = new CellValue(expense.CreatedAt),
                             DataType = CellValues.String 
                         },
                         new Cell()
                         {
-                            CellValue = new CellValue(expense.ExpenseSource),
+                            // expense.ExpenseSource.ToString может не работать
+                            // в случае чего поменять на свич, где создается стринга
+                            CellValue = new CellValue(expense.ExpenseSource.ToString()),
                             DataType = CellValues.String 
                         },
                         new Cell()

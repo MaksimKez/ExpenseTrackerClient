@@ -18,7 +18,9 @@ public partial class MainWindow : Window
     private ObservableCollection<Income> _incomes;
     private ObservableCollection<Expense> _expenses;
     private TransactionsClient _httpClient;
-    private const string FILE_PATH = "C:\\Users\\Tonya\\Desktop\\kursClient\\ExpenseTrackerClient\\UserAndAccountData.json";
+
+    private const string FILE_PATH =
+        "C:\\Users\\Tonya\\Desktop\\kursClient\\ExpenseTrackerClient\\UserAndAccountData.json";
 
     public MainWindow()
     {
@@ -33,10 +35,10 @@ public partial class MainWindow : Window
         try
         {
             var bankAccountId = GetBankAccountIdFromJson(FILE_PATH);
-            
+
             // Загрузка доходов и расходов
             await LoadDataAsync(bankAccountId);
-            
+
             // Привязка источников данных
             IncomesListBox.ItemsSource = _incomes;
             ExpensesListBox.ItemsSource = _expenses;
@@ -110,7 +112,8 @@ public partial class MainWindow : Window
         }
         else
         {
-            MessageBox.Show("Выберите доход для удаления.", "Удаление дохода", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show("Выберите доход для удаления.", "Удаление дохода", MessageBoxButton.OK,
+                MessageBoxImage.Warning);
         }
     }
 
@@ -127,7 +130,8 @@ public partial class MainWindow : Window
         }
         else
         {
-            MessageBox.Show("Выберите расход для удаления.", "Удаление расхода", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show("Выберите расход для удаления.", "Удаление расхода", MessageBoxButton.OK,
+                MessageBoxImage.Warning);
         }
     }
 
@@ -152,120 +156,122 @@ public partial class MainWindow : Window
             SortRecords(sortWindow.SelectedCriteria);
         }
     }
-    
+
     private void ReportButton_Click(object sender, RoutedEventArgs e)
     {
         var reportWindow = new ReportWindow();
         reportWindow.Show();
         this.Close();
-    
-    private void SortRecords(string criteria) 
-    { 
-        switch (criteria) 
-        { 
-            case "Date": 
-                _incomes = new ObservableCollection<Income>(_incomes.OrderBy<Income, object>(x => x.Date)); // Встроенная сортировка
-                _expenses = new ObservableCollection<Expense>(_expenses.OrderBy(x => x.Date)); // Встроенная сортировка
-                break; 
+
+        DataContext = null;
+        DataContext = this;
+    }
+
+    private void SortRecords(string criteria)
+    {
+        switch (criteria)
+        {
+            case "Date":
+                _incomes = new ObservableCollection<Income>(
+                    _incomes.OrderBy<Income, object>(x => x.CreatedAt)); // Встроенная сортировка
+                _expenses = new ObservableCollection<Expense>(_expenses.OrderBy(x =>
+                    x.CreatedAt)); // Встроенная сортировка
+                break;
             case "Category":
                 BubbleSort(_incomes); // Пузырьковая сортировка
                 BubbleSort(_expenses); // Пузырьковая сортировка
                 break;
-            case "Amount": 
+            case "Amount":
                 ShakerSort(_incomes); // Шейкерная сортировка
                 ShakerSort(_expenses); // Шейкерная сортировка
-                break; 
-        } 
-        DataContext = null; 
-        DataContext = this; 
+                break;
+        }
     }
-    
-    public static void BubbleSort(IncomeSourceEnum[] array)
+
+    private void BubbleSort(ObservableCollection<Income> records)
     {
-        int n = array.Length;
+        int n = records.Count;
         for (int i = 0; i < n - 1; i++)
         {
             for (int j = 0; j < n - 1 - i; j++)
             {
-                if (array[j] > array[j + 1])
+                if (records[j].Sum > records[j + 1].Sum)
                 {
-                    IncomeSourceEnum temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
+                    (records[j], records[j + 1]) = (records[j + 1], records[j]);
                 }
             }
         }
     }
-    
-    public static void BubbleSort(ExpenseSourceEnum[] array)
+
+    private void BubbleSort(ObservableCollection<Expense> records)
     {
-        int n = array.Length;
+        int n = records.Count;
         for (int i = 0; i < n - 1; i++)
         {
             for (int j = 0; j < n - 1 - i; j++)
             {
-                if (array[j] > array[j + 1])
+                if (records[j].Sum > records[j + 1].Sum)
                 {
-                    ExpenseSourceEnum temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
+                    (records[j], records[j + 1]) = (records[j + 1], records[j]);
                 }
             }
         }
     }
 
-    private void ShakerSort(ObservableCollection<Income> records)
-    {
-        int left = 0; int right = records.Count - 1;
-        while (left < right)
+        private void ShakerSort(ObservableCollection<Income> records)
         {
-            for (int i = left; i < right; i++)
+            int left = 0;
+            int right = records.Count - 1;
+            while (left < right)
             {
-                if (records[i].Sum > records[i + 1].Sum)
+                for (int i = left; i < right; i++)
                 {
-                    var temp = records[i]; records[i] = records[i + 1]; records[i + 1] = temp;
+                    if (records[i].Sum > records[i + 1].Sum)
+                    {
+                        (records[i], records[i + 1]) = (records[i + 1], records[i]);
+                    }
                 }
-            } 
-            right--;
-            for (int i = right; i > left; i--)
-            {
-                if (records[i - 1].Sum > records[i].Sum)
-                {
-                    var temp = records[i - 1]; records[i - 1] = records[i]; records[i] = temp;
-                }
-            } 
-            left++;
-        }
-    }
 
-    private void ShakerSort(ObservableCollection<Expense> records)
-    {
-        int left = 0;
-        int right = records.Count - 1;
-        while (left < right)
+                right--;
+                for (int i = right; i > left; i--)
+                {
+                    if (records[i - 1].Sum > records[i].Sum)
+                    {
+                        (records[i - 1], records[i]) = (records[i], records[i - 1]);
+                    }
+                }
+
+                left++;
+            }
+        }
+
+        public void ShakerSort(ObservableCollection<Expense> records)
         {
-            for (int i = left; i < right; i++)
+            int left = 0;
+            int right = records.Count - 1;
+            while (left < right)
             {
-                if (records[i].Sum > records[i + 1].Sum)
+                for (int i = left; i < right; i++)
                 {
-                    var temp = records[i];
-                    records[i] = records[i + 1];
-                    records[i + 1] = temp;
+                    if (records[i].Sum > records[i + 1].Sum)
+                    {
+                        (records[i], records[i + 1]) = (records[i + 1], records[i]);
+                    }
                 }
-            }
 
-            right--;
-            for (int i = right; i > left; i--)
-            {
-                if (records[i - 1].Sum > records[i].Sum)
+                right--;
+                for (int i = right; i > left; i--)
                 {
-                    var temp = records[i - 1];
-                    records[i - 1] = records[i];
-                    records[i] = temp;
+                    if (records[i - 1].Sum > records[i].Sum)
+                    {
+                        (records[i - 1], records[i]) = (records[i], records[i - 1]);
+                    }
                 }
-            }
 
-            left++;
+                left++;
+            }
         }
     }
-}
+
+
+

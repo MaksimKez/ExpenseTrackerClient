@@ -29,7 +29,7 @@ public partial class SearchFilterWindow : Window
 
     private void SelectCategoryButton_Click(object sender, RoutedEventArgs e)
     { 
-        CategorySelectionWindow categoryWindow = new CategorySelectionWindow(IncomeCheckBox.IsChecked ?? false || ExpenseCheckBox.IsChecked ?? false); 
+        CategorySelectionWindow categoryWindow = new CategorySelectionWindow((IncomeCheckBox.IsChecked ?? false) || (ExpenseCheckBox.IsChecked ?? false)); 
         if (categoryWindow.ShowDialog() == true) 
         { 
             // Логика для получения выбранной категории из categoryWindow
