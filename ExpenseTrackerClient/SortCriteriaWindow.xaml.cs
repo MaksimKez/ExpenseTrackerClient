@@ -6,26 +6,40 @@ public partial class SortCriteriaWindow : System.Windows.Window
 {
     public string SelectedCriteria { get; private set; }
     
+    public bool IsSortingIncomes { get; private set; }
+    
     public SortCriteriaWindow()
     {
         InitializeComponent();
     }
     
-    private void OkButton_Click(object sender, RoutedEventArgs e)
+    private void SortIncomesButton_Click(object sender, RoutedEventArgs e)
     {
-        if (DateRadioButton.IsChecked == true)
+        if (criteriaComboBox.SelectedItem != null)
         {
-            SelectedCriteria = "Date";
+            SelectedCriteria = (criteriaComboBox.SelectedItem as ComboBoxItem).Content.ToString();
+            IsSortingIncomes = true;
+            this.DialogResult = true;
+            this.Close();
         }
-        /*else if (CategoryRadioButton.IsChecked == true)
+        else
         {
-            SelectedCriteria = "Category";
-        }*/
-        else if (AmountRadioButton.IsChecked == true)
-        {
-            SelectedCriteria = "Amount";
+            MessageBox.Show("Please select a sort criteria.");
         }
-
-        this.DialogResult = true;
+    }
+    
+    private void SortExpensesButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (criteriaComboBox.SelectedItem != null)
+        {
+            SelectedCriteria = (criteriaComboBox.SelectedItem as ComboBoxItem).Content.ToString();
+            IsSortingIncomes = false;
+            this.DialogResult = true;
+            this.Close();
+        }
+        else
+        {
+            MessageBox.Show("Please select a sort criteria.");
+        }
     }
 }

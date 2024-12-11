@@ -140,132 +140,219 @@ public partial class MainWindow : Window
 
     private void SearchButton_Click(object sender, RoutedEventArgs e)
     {
-        SearchFilterWindow filterWindow = new SearchFilterWindow();
-        filterWindow.ShowDialog();
+        SearchCriteriaWindow searchWindow = new SearchCriteriaWindow();
+        if (searchWindow.ShowDialog() == true)
+        {
+            List<object> results = SearchRecords(searchWindow.SelectedCriteria, searchWindow.SearchValue);
+            SearchResultsWindow resultsWindow = new SearchResultsWindow();
+            resultsWindow.DisplayResults(results);
+            resultsWindow.ShowDialog();
+        }
     }
 
+    public List<object> SearchRecords(string criteria, string value)
+    {
+        List<object> results = new List<object>();
+
+        switch (criteria)
+        {
+            case "Date":
+                DateTime searchDate;
+                if (DateTime.TryParse(value, out searchDate))
+                {
+                    results.AddRange(_incomes.Where(r => r.CreatedAt.Date == searchDate.Date).Cast<object>().ToList());
+                    results.AddRange(_expenses.Where(r => r.CreatedAt.Date == searchDate.Date).Cast<object>().ToList());
+                }
+                break;
+            case "Category":
+                results.AddRange(_incomes.Where(r => r.IncomeSource.ToString().Contains(value, StringComparison.OrdinalIgnoreCase)).Cast<object>().ToList());
+                results.AddRange(_expenses.Where(r => r.ExpenseSource.ToString().Contains(value, StringComparison.OrdinalIgnoreCase)).Cast<object>().ToList());
+                break;
+            case "Sum":
+                decimal searchSum;
+                if (decimal.TryParse(value, out searchSum))
+                {
+                    results.AddRange(_incomes.Where(r => r.Sum == searchSum).Cast<object>().ToList());
+                    results.AddRange(_expenses.Where(r => r.Sum == searchSum).Cast<object>().ToList());
+                }
+                break;
+            default:
+                throw new Exception("Unknown search criteria");
+        }
+        return results;
+    }
+    
+    private void ReportButton_Click(object sender, RoutedEventArgs e)
+    {
+        ReportWindow reportWindow = new ReportWindow(_incomes, _expenses);
+        reportWindow.Show();
+    }
+    
     private void SortButton_Click(object sender, RoutedEventArgs e)
     {
         SortCriteriaWindow sortWindow = new SortCriteriaWindow();
         if (sortWindow.ShowDialog() == true)
         {
-            SortRecords(sortWindow.SelectedCriteria);
+            if (sortWindow.IsSortingIncomes)
+            {
+                SortRecords<Income>(sortWindow.SelectedCriteria, _incomes, true);
+            }
+            else
+            {
+                SortRecords<Expense>(sortWindow.SelectedCriteria, _expenses, false);
+            }
         }
     }
-    
-    private void ReportButton_Click(object sender, RoutedEventArgs e)
+
+    public void SortRecords<T>(string criteria, List<T> records, bool isIncome) where T : class
     {
-        var reportWindow = new ReportWindow();
-        reportWindow.Show();
-        this.Close();
-    
-    private void SortRecords(string criteria) 
-    { 
-        switch (criteria) 
-        { 
-            case "Date": 
-                _incomes = new ObservableCollection<Income>(_incomes.OrderBy<Income, object>(x => x.Date)); // Встроенная сортировка
-                _expenses = new ObservableCollection<Expense>(_expenses.OrderBy(x => x.Date)); // Встроенная сортировка
-                break; 
-            case "Category":
-                BubbleSort(_incomes); // Пузырьковая сортировка
-                BubbleSort(_expenses); // Пузырьковая сортировка
+        switch (criteria)
+        {
+            case "Date":
+                records = BuiltInSort(records, criteria);
                 break;
-            case "Amount": 
-                ShakerSort(_incomes); // Шейкерная сортировка
-                ShakerSort(_expenses); // Шейкерная сортировка
-                break; 
-        } 
-        DataContext = null; 
-        DataContext = this; 
-    }
-    
-    public static void BubbleSort(IncomeSourceEnum[] array)
-    {
-        int n = array.Length;
-        for (int i = 0; i < n - 1; i++)
-        {
-            for (int j = 0; j < n - 1 - i; j++)
-            {
-                if (array[j] > array[j + 1])
-                {
-                    IncomeSourceEnum temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
-                }
-            }
+            case "Category":
+                records = BubbleSort(records, criteria);
+                break;
+            case "Sum":
+                records = InsertionSort(records, criteria);
+                break;
+            default:
+                throw new Exception("Unknown sorting criteria");
         }
-    }
-    
-    public static void BubbleSort(ExpenseSourceEnum[] array)
-    {
-        int n = array.Length;
-        for (int i = 0; i < n - 1; i++)
+
+        if (isIncome)
         {
-            for (int j = 0; j < n - 1 - i; j++)
-            {
-                if (array[j] > array[j + 1])
-                {
-                    ExpenseSourceEnum temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
-                }
-            }
+            _incomes = records.Cast<Income>().ToList();
+            IncomesListBox.ItemsSource = null;
+            IncomesListBox.ItemsSource = _incomes;
+        }
+        else
+        {
+            _expenses = records.Cast<Expense>().ToList();
+            ExpensesListBox.ItemsSource = null;
+            ExpensesListBox.ItemsSource = _expenses;
         }
     }
 
-    private void ShakerSort(ObservableCollection<Income> records)
+    private List<T> BuiltInSort<T>(List<T> records, string criteria) where T : class
     {
-        int left = 0; int right = records.Count - 1;
-        while (left < right)
+        if (typeof(T) == typeof(Income))
         {
-            for (int i = left; i < right; i++)
+            var incomeRecords = records.Cast<Income>().ToList();
+            return criteria switch
             {
-                if (records[i].Sum > records[i + 1].Sum)
-                {
-                    var temp = records[i]; records[i] = records[i + 1]; records[i + 1] = temp;
-                }
-            } 
-            right--;
-            for (int i = right; i > left; i--)
-            {
-                if (records[i - 1].Sum > records[i].Sum)
-                {
-                    var temp = records[i - 1]; records[i - 1] = records[i]; records[i] = temp;
-                }
-            } 
-            left++;
+                "Date" => incomeRecords.OrderBy(r => r.CreatedAt).ToList() as List<T>,
+                _ => records
+            };
         }
+        else if (typeof(T) == typeof(Expense))
+        {
+            var expenseRecords = records.Cast<Expense>().ToList();
+            return criteria switch
+            {
+                "Date" => expenseRecords.OrderBy(r => r.CreatedAt).ToList() as List<T>,
+                _ => records
+            };
+        }
+        return records;
     }
 
-    private void ShakerSort(ObservableCollection<Expense> records)
+    private List<T> BubbleSort<T>(List<T> records, string criteria) where T : class
     {
-        int left = 0;
-        int right = records.Count - 1;
-        while (left < right)
+        var length = records.Count;
+        for (int i = 0; i < length - 1; i++)
         {
-            for (int i = left; i < right; i++)
+            for (int j = 0; j < length - i - 1; j++)
             {
-                if (records[i].Sum > records[i + 1].Sum)
+                bool swap = false;
+                if (typeof(T) == typeof(Income))
                 {
-                    var temp = records[i];
-                    records[i] = records[i + 1];
-                    records[i + 1] = temp;
+                    var incomeRecords = records.Cast<Income>().ToList();
+                    switch (criteria)
+                    {
+                        case "Category":
+                            if (incomeRecords[j].IncomeSource > incomeRecords[j + 1].IncomeSource)
+                                swap = true;
+                            break;
+                    }
+                    if (swap)
+                    {
+                        var temp = incomeRecords[j];
+                        incomeRecords[j] = incomeRecords[j + 1];
+                        incomeRecords[j + 1] = temp;
+                    }
+                    records = incomeRecords as List<T>;
+                }
+                else if (typeof(T) == typeof(Expense))
+                {
+                    var expenseRecords = records.Cast<Expense>().ToList();
+                    switch (criteria)
+                    {
+                        case "Category":
+                            if (expenseRecords[j].ExpenseSource > expenseRecords[j + 1].ExpenseSource)
+                                swap = true;
+                            break;
+                    }
+                    if (swap)
+                    {
+                        var temp = expenseRecords[j];
+                        expenseRecords[j] = expenseRecords[j + 1];
+                        expenseRecords[j + 1] = temp;
+                    }
+                    records = expenseRecords as List<T>;
                 }
             }
-
-            right--;
-            for (int i = right; i > left; i--)
-            {
-                if (records[i - 1].Sum > records[i].Sum)
-                {
-                    var temp = records[i - 1];
-                    records[i - 1] = records[i];
-                    records[i] = temp;
-                }
-            }
-
-            left++;
         }
+        return records;
+    }
+
+    private List<T> InsertionSort<T>(List<T> records, string criteria) where T : class
+    {
+        if (typeof(T) == typeof(Income))
+        {
+            var incomeRecords = records.Cast<Income>().ToList();
+            for (int i = 1; i < incomeRecords.Count; i++)
+            {
+                var key = incomeRecords[i];
+                int j = i - 1;
+
+                switch (criteria)
+                {
+                    case "Sum":
+                        while (j >= 0 && incomeRecords[j].Sum > key.Sum)
+                        {
+                            incomeRecords[j + 1] = incomeRecords[j];
+                            j--;
+                        }
+                        break;
+                }
+                incomeRecords[j + 1] = key;
+            }
+            records = incomeRecords as List<T>;
+        }
+        else if (typeof(T) == typeof(Expense))
+        {
+            var expenseRecords = records.Cast<Expense>().ToList();
+            for (int i = 1; i < expenseRecords.Count; i++)
+            {
+                var key = expenseRecords[i];
+                int j = i - 1;
+
+                switch (criteria)
+                {
+                    case "Sum":
+                        while (j >= 0 && expenseRecords[j].Sum > key.Sum)
+                        {
+                            expenseRecords[j + 1] = expenseRecords[j];
+                            j--;
+                        }
+                        break;
+                }
+                expenseRecords[j + 1] = key;
+            }
+            records = expenseRecords as List<T>;
+        }
+        return records;
     }
 }

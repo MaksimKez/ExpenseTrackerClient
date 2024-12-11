@@ -8,22 +8,15 @@
         Background="PaleTurquoise"
         Title="SortCriteriaWindow" Height="250" Width="400">
     <Grid Margin="10">
-        <TextBlock Text="Выберите критерий сортировки:" 
-                   Grid.Row="1" FontSize="18" Foreground="navy" 
-                   HorizontalAlignment="Center" Margin="5"/>
-                <StackPanel>
-                    <RadioButton Content="Дата" 
-                                 FontSize="16" Foreground="Navy" 
-                                 GroupName="SortCriteria" Margin="30,50" Name="DateRadioButton"/>
-                    <RadioButton Content="Категория" FontSize="16" 
-                                 Foreground="Navy" GroupName="SortCriteria" 
-                                 Margin="30, -10" Name="CategoryRadioButton"/>
-                    <RadioButton Content="Сумма" FontSize="16"
-                                 Foreground="Navy" GroupName="SortCriteria" 
-                                 Margin="30, -30" Name="AmountRadioButton"/>
-                </StackPanel>
-        <Button Content="OK" Foreground="navy" Background="YellowGreen" 
-                Width="75" Height="30" Margin="10" Click="OkButton_Click" 
-                HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <StackPanel>
+            <Label Content="Выберите критерий сортировки:" />
+            <ComboBox x:Name="criteriaComboBox" Width="200" Margin="10">
+                <ComboBoxItem Content="Дата" />
+                <ComboBoxItem Content="Категория" />
+                <ComboBoxItem Content="Сумма" />
+            </ComboBox>
+                <Button Content="Sort Incomes" Width="100" Click="SortIncomesButton_Click" /> 
+                <Button Content="Sort Expenses" Width="100" Click="SortExpensesButton_Click" />
+        </StackPanel>
     </Grid>
 </Window>
