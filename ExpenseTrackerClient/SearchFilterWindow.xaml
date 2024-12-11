@@ -36,7 +36,6 @@
                 </Polygon.RenderTransform>
             </Polygon>
         </Canvas>
-        
         <StackPanel>
             <Label Content="Select Search Criteria:" />
             <ComboBox x:Name="criteriaComboBox" Width="200" Margin="10">

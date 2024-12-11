@@ -7,11 +7,6 @@
         mc:Ignorable="d"
         Title="SearchResultsWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel>
-            <TextBox Width="400" Height="30" Margin="10"
-                     VerticalContentAlignment="Center"
-                     GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" />
-            <ListBox Name="ResultsListBox" Margin="10"/>
-        </StackPanel>
+         <ListBox Name="ResultsListBox" Margin="10"/>
     </Grid>
 </Window>

@@ -152,13 +152,14 @@ public partial class MainWindow : Window
             SortRecords(sortWindow.SelectedCriteria);
         }
     }
-    
+
     private void ReportButton_Click(object sender, RoutedEventArgs e)
     {
         var reportWindow = new ReportWindow();
         reportWindow.Show();
         this.Close();
-    
+    }
+
     private void SortRecords(string criteria) 
     { 
         switch (criteria) 
