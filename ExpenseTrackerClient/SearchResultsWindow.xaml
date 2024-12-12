@@ -8,7 +8,7 @@
         Background="SkyBlue"
         Title="SearchResultsWindow" Height="450" Width="800">
     <Grid>
-        <Label Content="Result of Search" FontSize="20" Foreground="Navy" 
+        <Label Content="Результат поиска" FontSize="20" Foreground="Navy" 
                HorizontalAlignment="Center" Margin="10"/>
         <ListBox Name="ResultsListBox" Height="350" Width="700" Background="PaleTurquoise" Margin="10"/>
         <Button Content="Back" FontSize="14" Foreground="Navy" 

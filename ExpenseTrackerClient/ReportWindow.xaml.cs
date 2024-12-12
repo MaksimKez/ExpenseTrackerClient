@@ -20,17 +20,7 @@ namespace ExpenseTrackerClient;
 
 public partial class ReportWindow : System.Windows.Window
 {
-    /*private List<Income> _incomes;
-    private List<Expense> _expenses;
-
-    public ReportWindow(List<Income> incomes, List<Expense> expenses)
-    {
-        InitializeComponent();
-        _incomes = incomes;
-        _expenses = expenses;
-        DisplayTotals();
-    }*/
-    
+    private readonly FinancialViewModel _viewModel;
     public decimal TotalIncome => _incomes.Sum(i => i.Sum);
     public decimal TotalExpense => _expenses.Sum(e => e.Sum);
     public decimal Balance => TotalIncome - TotalExpense;
@@ -40,12 +30,13 @@ public partial class ReportWindow : System.Windows.Window
     private TransactionsClient _httpClient;
     private const string FILE_PATH = "C:\\Users\\Tonya\\Desktop\\kursClient\\ExpenseTrackerClient\\UserAndAccountData.json";
 
-    public ReportWindow()
+    public ReportWindow(FinancialViewModel viewModel)
     {
         InitializeComponent();
         _incomes = new ObservableCollection<Income>();
         _expenses = new ObservableCollection<Expense>();
         _httpClient = new TransactionsClient();
+        _viewModel = viewModel;
         DataContext = new FinancialViewModel();
     }
     
@@ -56,78 +47,10 @@ public partial class ReportWindow : System.Windows.Window
         this.Close();
     }
     
-    private Guid GetBankAccountIdFromJson(string filePath)
-    {
-        var jsonData = File.ReadAllText(filePath);
-
-        var accountData = JsonConvert.DeserializeObject<AccountData>(jsonData);
-        if (accountData == null || accountData.BankAccountId == Guid.Empty)
-        {
-            throw new ArgumentException("Неверный формат файла JSON или отсутствует BankAccountId.");
-        }
-
-        return accountData.BankAccountId;
-    }
-
-    private async Task LoadDataAsync(Guid bankAccountId)
-    {
-        _incomes.Clear();
-        var incomesFromApi = await _httpClient.GetIncomesByBankAccountIdAsync(bankAccountId);
-        foreach (var income in incomesFromApi)
-        {
-            _incomes.Add(income);
-        }
-
-        _expenses.Clear();
-        var expensesFromApi = await _httpClient.GetExpensesByBankAccountIdAsync(bankAccountId);
-        foreach (var expense in expensesFromApi)
-        {
-            _expenses.Add(expense);
-        }
-    }
-    
     private void ReportButton_Click(object sender, RoutedEventArgs e)
     {
         GenerateReport();
     } 
-    
-   /* private void CreateReportButton_Click(object sender, RoutedEventArgs e)
-    {
-        string filePath = @"report.xlsx";
-        using (ExcelPackage package = new ExcelPackage())
-        {
-            ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Report");
-            worksheet.Cells[1, 1].Value = "Title";
-            worksheet.Cells[1, 2].Value = "Sum";
-            worksheet.Cells[1, 3].Value = "Source";
-            worksheet.Cells[1, 4].Value = "Created At";
-
-            int row = 2;
-            foreach (var income in _incomes)
-            {
-                worksheet.Cells[row, 1].Value = income.Title;
-                worksheet.Cells[row, 2].Value = income.Sum;
-                worksheet.Cells[row, 3].Value = income.IncomeSource.ToString();
-                worksheet.Cells[row, 4].Value = income.CreatedAt;
-                row++;
-            }
-
-            foreach (var expense in _expenses)
-            {
-                worksheet.Cells[row, 1].Value = expense.Title;
-                worksheet.Cells[row, 2].Value = expense.Sum;
-                worksheet.Cells[row, 3].Value = expense.ExpenseSource.ToString();
-                worksheet.Cells[row, 4].Value = expense.CreatedAt;
-                row++;
-            }
-
-            worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
-
-            FileInfo file = new FileInfo(filePath);
-            package.SaveAs(file);
-            MessageBox.Show($"Отчет сохранен по пути: {filePath}", "Отчет создан", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-    }*/
     
     private void GenerateReport()
     { 
