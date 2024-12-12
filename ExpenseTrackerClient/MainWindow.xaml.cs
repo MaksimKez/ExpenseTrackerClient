@@ -167,4 +167,10 @@ public partial class MainWindow : Window
         var searchWindow = new SearchWindow(_incomes.ToList(), _expenses.ToList());
         searchWindow.ShowDialog();
     }
+
+    private void ReportButton_Click(object sender, RoutedEventArgs e)
+    {
+        var reportWindow = new ReportWindow(_incomes.ToList(), _expenses.ToList());
+        reportWindow.ShowDialog();
+    }
 }
