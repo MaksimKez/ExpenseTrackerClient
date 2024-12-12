@@ -6,6 +6,7 @@ using System.Windows.Input;
 using ExpenseTrackerClient.Data.HttpClients;
 using ExpenseTrackerClient.Data.Models;
 using ExpenseTrackerClient.Models;
+using ExpenseTrackerClient.SortAndFindWindows;
 using Newtonsoft.Json;
 
 namespace ExpenseTrackerClient;
@@ -136,5 +137,27 @@ public partial class MainWindow : Window
         var registerOrLogInWindow = new RegisterOrLogInWindow();
         registerOrLogInWindow.Show();
         Close();
+    }
+
+    private void SortButton_Click(object sender, RoutedEventArgs e)
+    {
+        var sortWindow = new SortWindow(_incomes, _expenses);
+        sortWindow.ShowDialog();
+
+        // После закрытия окна обновляем коллекции
+        _incomes.Clear();
+        foreach (var income in sortWindow._incomes)
+        {
+            _incomes.Add(income);
+        }
+
+        _expenses.Clear();
+        foreach (var expense in sortWindow._expenses)
+        {
+            _expenses.Add(expense);
+        }
+
+        MessageBox.Show("Данные обновлены после сортировки.", "Сортировка", MessageBoxButton.OK, MessageBoxImage.Information);
+        ;
     }
 }

@@ -46,6 +46,10 @@
                 <Button Content="Добавить расход" Width="150" Margin="0,10" 
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="AddExpenseAsync"/>
+                
+                <Button Content="Сортировка" Width="150" Margin="0,10" 
+                        Style="{StaticResource MaterialDesignFlatButton}" 
+                        Click="SortButton_Click"/>
             </StackPanel>
         </materialDesign:DrawerHost.LeftDrawerContent>
 
