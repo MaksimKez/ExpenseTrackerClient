@@ -155,7 +155,13 @@ public partial class MainWindow : Window
 
     private void ReportButton_Click(object sender, RoutedEventArgs e)
     {
-        var reportWindow = new ReportWindow();
+        var totalIncomes = _incomes.Select(x => x.Sum).Sum();
+        var totalExpenses = _expenses.Select(x => x.Sum).Sum();
+        var reportWindow = new ReportWindow(new FinancialViewModel
+        {
+            TotalExpense = totalExpenses,
+            TotalIncome = totalIncomes
+        });
         reportWindow.Show();
         this.Close();
     }
