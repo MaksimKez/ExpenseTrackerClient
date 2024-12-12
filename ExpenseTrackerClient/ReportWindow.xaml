@@ -5,13 +5,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ExpenseTrackerClient"
         mc:Ignorable="d"
+        Background="PaleTurquoise"
         Title="ReportWindow" Height="450" Width="800">
-    <Grid Margin="10">
+    <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -25,31 +25,33 @@
         <!-- Доходы -->
         <Border Grid.Row="1" Grid.Column="0" Background="LightBlue" CornerRadius="10" Margin="10" Padding="10">
             <StackPanel>
-                <TextBlock x:Name="TotalEarnedTextBlock" Text="Всего заработано: 0" Foreground="Navy" FontSize="16" Margin="0,5" />
+                <TextBlock x:Name="TotalEarnedTextBlock" Text="Всего заработано: 0" Foreground="Navy" FontSize="16" FontWeight="Bold" Margin="0,5" />
             </StackPanel>
         </Border>
-
+        
         <!-- Расходы -->
         <Border Grid.Row="1" Grid.Column="1" Background="LightBlue" CornerRadius="10" Margin="10" Padding="10">
             <StackPanel>
-                <TextBlock x:Name="TotalSpentTextBlock" Text="Всего потрачено: 0" Foreground="Navy" FontSize="16" Margin="0,5" />
+                <TextBlock x:Name="TotalSpentTextBlock" Text="Всего потрачено: 0" Foreground="Navy" FontSize="16" FontWeight="Bold" Margin="0,5" />
             </StackPanel>
         </Border>
-
+       
         <!-- Баланс -->
         <Border Grid.Row="1" Grid.Column="2" Background="LightBlue" CornerRadius="10" Margin="10" Padding="10">
             <StackPanel>
-                <TextBlock x:Name="BalanceTextBlock" Text="Баланс: 0" FontSize="16" Foreground="Navy" Margin="0,5" />
+                <TextBlock x:Name="BalanceTextBlock" Text="Баланс: 0" FontSize="16" Foreground="Navy" FontWeight="Bold" Margin="0,5" />
             </StackPanel>
         </Border>
 
-        <Button Content="Сделать отчет" Grid.Row="3"
-                HorizontalAlignment="Center" 
-                Width="120" Height="40" Background="Tomato"
+        <!-- Кнопка отчета -->
+        <Button Content="Создать отчет" Grid.Row="3" Grid.ColumnSpan="3"
+                HorizontalAlignment="Center" FontSize="14"
+                Width="150" Height="40" Margin="20" Background="Navy" 
                 Foreground="White" FontWeight="Bold" Click="GenerateReportButton_Click" />
         
         <Button Content="Назад" FontSize="14" Foreground="Navy" 
-                Background="Tomato" Grid.Row="4" HorizontalAlignment="Center"
+                Background="Tomato" Grid.Row="4" Grid.ColumnSpan="3"
+                HorizontalAlignment="Center"
                 Width="100" Height="40" Margin="10"
                 VerticalAlignment="Bottom"
                 Click="ExitButton_Click" />

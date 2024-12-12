@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ExpenseTrackerClient.SortAndSearchWindows"
         mc:Ignorable="d"
+        Background="PaleTurquoise"
         Title="SearchWindow" Height="450" Width="800">
     <Grid Margin="10">
         <StackPanel>
