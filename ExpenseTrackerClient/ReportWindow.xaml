@@ -22,7 +22,7 @@
             <TextBlock x:Name="BalanceTextBlock" Text="Баланс: 0" FontSize="16" Margin="0,5" />
         </StackPanel>
 
-        <Button Content="Доделать" Grid.Row="3" HorizontalAlignment="Center" Width="120" Height="40" Background="Tomato"
-                Foreground="White" FontWeight="Bold" Click="ThrowExceptionButton_Click" />
+        <Button Content="Сделать отчет" Grid.Row="3" HorizontalAlignment="Center" Width="120" Height="40" Background="Tomato"
+                Foreground="White" FontWeight="Bold" Click="GenerateReportButton_Click" />
     </Grid>
 </Window>
