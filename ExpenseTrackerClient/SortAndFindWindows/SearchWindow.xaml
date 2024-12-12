@@ -8,19 +8,21 @@
         Title="SearchWindow" Height="450" Width="800">
     <Grid Margin="10">
         <StackPanel>
-            <Label Content="Выберите критерий поиска:" FontSize="16" HorizontalAlignment="Center" />
+            <Label Content="Выберите критерий поиска:" Foreground="Navy" FontSize="16" HorizontalAlignment="Center" />
             <ComboBox x:Name="criteriaComboBox" Width="200" Margin="10" HorizontalAlignment="Center">
                 <ComboBoxItem Content="Дата" />
                 <ComboBoxItem Content="Сумма" />
             </ComboBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <Label Content="Значение:" VerticalAlignment="Center" />
+                <Label Content="Значение:" Foreground="Navy" VerticalAlignment="Center" />
                 <TextBox x:Name="valueTextBox" Width="150" Margin="10,0,0,0" />
             </StackPanel>
-            <Button Content="Найти" Width="100" Margin="10" HorizontalAlignment="Center" 
+            <Button Content="Найти" Width="100" Foreground="Navy" Background="YellowGreen"
+                    Margin="10" HorizontalAlignment="Center" 
                     Click="SearchButton_Click" />
             <ListBox x:Name="resultsListBox" Height="150" Margin="10" />
-            <Button Content="Закрыть" Width="100" Margin="10" HorizontalAlignment="Center" 
+            <Button Content="Закрыть" Foreground="Navy" Background="Tomato"
+                    Width="100" Margin="10" HorizontalAlignment="Center" 
                     Click="ExitButton_Click" />
         </StackPanel>
     </Grid>
