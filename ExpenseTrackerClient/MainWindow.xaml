@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Expense Tracker" Height="450" Width="800" Loaded="Window_Loaded"
-        Background="#FAFAFA"
+        Background="PaleTurquoise"
         materialDesign:ColorZoneAssist.Mode="PrimaryMid">
-
+    
     <!-- Определяем ресурсы Material Design в одном блоке -->
     <Window.Resources>
         <!-- Основной словарь темы Material Design -->
@@ -31,31 +31,31 @@
     </Window.Resources>
 
     <!-- Основное содержимое окна -->
-    <materialDesign:DrawerHost>
+    <materialDesign:DrawerHost Background="#F5F5F5">
         <!-- Левая выезжающая панель -->
         <materialDesign:DrawerHost.LeftDrawerContent>
             <StackPanel Margin="20">
-                <Button Content="Выйти из аккаунта" Width="150" Margin="0,10" 
+                <Button Content="Выйти из аккаунта" Foreground="navy" Width="150" Margin="0,10" 
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="LogOutButton_Click"/>
                 
-                <Button Content="Добавить доход" Width="150" Margin="0,10" 
+                <Button Content="Добавить доход" Foreground="navy" Width="150" Margin="0,10" 
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="AddIncomeAsync"/>
                 
-                <Button Content="Добавить расход" Width="150" Margin="0,10" 
+                <Button Content="Добавить расход" Foreground="navy" Width="150" Margin="0,10" 
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="AddExpenseAsync"/>
                 
-                <Button Content="Сортировка" Width="150" Margin="0,10" 
+                <Button Content="Сортировка" Foreground="navy" Width="150" Margin="0,10" 
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="SortButton_Click"/>
                 
-                <Button Content="Поиск" Width="150" Margin="0,10" 
+                <Button Content="Поиск" Foreground="navy" Width="150" Margin="0,10" 
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="SearchButton_Click"/>
                 
-                <Button Content="Отчет" Width="150" Margin="0,10" 
+                <Button Content="Отчет" Foreground="navy" Width="150" Margin="0,10" 
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="ReportButton_Click"/>
             </StackPanel>
@@ -73,7 +73,9 @@
                         Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" 
                         CommandParameter="Left"
                         Margin="10,0,0,0"/>
-                <TextBlock Text="Expense Tracker" VerticalAlignment="Center" Foreground="White" FontSize="18" Margin="10,0,0,0"/>
+                <TextBlock Text="Expense Tracker" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="3"
+                           Foreground="LemonChiffon" FontSize="20" Margin="200,0,0,0"/>
             </StackPanel>
 
             
@@ -85,34 +87,39 @@
                         <ColumnDefinition Width="*" /> <!-- Колонка для расходов -->
                     </Grid.ColumnDefinitions>
 
-                    <ListBox Name="IncomesListBox" Grid.Column="0" Margin="10" MouseDoubleClick="RemoveIncomeAsync">
+                    <!-- Список доходов слева -->
+                    <ListBox Name="IncomesListBox" Grid.Column="0" Margin="10" 
+                             MouseDoubleClick="RemoveIncomeAsync" Background="#E8F5E9" 
+                             BorderBrush="#388E3C" BorderThickness="1">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
                                     <!-- Display the Title in Bold -->
-                                    <TextBlock Text="{Binding Title}" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Title}" FontWeight="Bold" Foreground="#388E3C"/>
+                                    <TextBlock Text="{Binding IncomeSource}" FontWeight="Bold" Foreground="#388E3C"/>
                                     <!-- Display the Sum (decimal) -->
-                                    <TextBlock Text="{Binding Sum, StringFormat=C0}" />
+                                    <TextBlock Text="{Binding Sum, StringFormat=C0}" Foreground="#388E3C" />
                                     <!-- Display the CreatedAt (DateTime) -->
-                                    <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:MM/dd/yyyy HH:mm}}" />
-
+                                    <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:MM/dd/yyyy HH:mm}}" Foreground="#388E3C"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
 
                     <!-- Список расходов справа -->
-                    <ListBox Name="ExpensesListBox" Grid.Column="1" Margin="10" MouseDoubleClick="RemoveExpenseAsync">
+                    <ListBox Name="ExpensesListBox" Grid.Column="1" Margin="10"
+                             Background="#FFEBEE" BorderBrush="#D32F2F" BorderThickness="1"
+                             MouseDoubleClick="RemoveExpenseAsync">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
                                     <!-- Display the Title in Bold -->
-                                    <TextBlock Text="{Binding Title}" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Title}" FontWeight="Bold" Foreground="#D32F2F"/>
+                                    <TextBlock Text="{Binding ExpenseSource}" FontWeight="Bold" Foreground="#D32F2F"/>
                                     <!-- Display the Sum (decimal) -->
-                                    <TextBlock Text="{Binding Sum, StringFormat=C0}" />
+                                    <TextBlock Text="{Binding Sum, StringFormat=C0}" Foreground="#D32F2F" />
                                     <!-- Display the CreatedAt (DateTime) -->
-                                    <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:MM/dd/yyyy HH:mm}}" />
-
+                                    <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:MM/dd/yyyy HH:mm}}" Foreground="#D32F2F"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
