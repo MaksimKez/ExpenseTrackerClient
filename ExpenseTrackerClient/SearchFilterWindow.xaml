@@ -43,7 +43,7 @@
                 <ComboBoxItem Content="Category" />
                 <ComboBoxItem Content="Sum" />
             </ComboBox>
-            <TextBox x:Name="searchValueTextBox" Width="200" Margin="10" PlaceholderText="Enter search value..." />
+            <TextBox x:Name="searchValueTextBox" Width="200" Margin="10" />
             <Button Content="Search" Width="100" Click="SearchButton_Click" />
         </StackPanel>
     </Grid>

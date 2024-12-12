@@ -165,11 +165,11 @@ public partial class MainWindow : Window
         switch (criteria) 
         { 
             case "Date": 
-                _incomes = new ObservableCollection<Income>(_incomes.OrderBy<Income, object>(x => x.Date)); // Встроенная сортировка
-                _expenses = new ObservableCollection<Expense>(_expenses.OrderBy(x => x.Date)); // Встроенная сортировка
+                _incomes = new ObservableCollection<Income>(_incomes.OrderBy(x => x.CreatedAt)); // Встроенная сортировка
+                _expenses = new ObservableCollection<Expense>(_expenses.OrderBy(x => x.CreatedAt)); // Встроенная сортировка
                 break; 
             case "Category":
-                BubbleSort(_incomes); // Пузырьковая сортировка
+                BubbleSort(); // Пузырьковая сортировка
                 BubbleSort(_expenses); // Пузырьковая сортировка
                 break;
             case "Amount": 
@@ -181,14 +181,14 @@ public partial class MainWindow : Window
         DataContext = this; 
     }
     
-    public static void BubbleSort(IncomeSourceEnum[] array)
+    public static void BubbleSort(List<Income> list)
     {
-        int n = array.Length;
+        int n = list.Count;
         for (int i = 0; i < n - 1; i++)
         {
             for (int j = 0; j < n - 1 - i; j++)
             {
-                if (array[j] > array[j + 1])
+                if (list[j].IncomeSource > array[j + 1])
                 {
                     IncomeSourceEnum temp = array[j];
                     array[j] = array[j + 1];
