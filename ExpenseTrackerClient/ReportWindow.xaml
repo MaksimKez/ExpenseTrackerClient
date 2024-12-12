@@ -13,19 +13,45 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
         <TextBlock Text="Отчет по финансам" FontSize="20" Foreground="Navy" 
                    FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10" />
 
-        <StackPanel Grid.Row="1" Margin="0,10">
-            <TextBlock x:Name="TotalSpentTextBlock" Text="Всего потрачено: 0" Foreground="Navy" FontSize="16" Margin="0,5" />
-            <TextBlock x:Name="TotalEarnedTextBlock" Text="Всего заработано: 0" Foreground="Navy" FontSize="16" Margin="0,5" />
-            <TextBlock x:Name="BalanceTextBlock" Text="Баланс: 0" FontSize="16" Foreground="Navy" Margin="0,5" />
-        </StackPanel>
+        <!-- Доходы -->
+        <Border Grid.Row="1" Grid.Column="0" Background="LightBlue" CornerRadius="10" Margin="10" Padding="10">
+            <StackPanel>
+                <TextBlock x:Name="TotalEarnedTextBlock" Text="Всего заработано: 0" Foreground="Navy" FontSize="16" Margin="0,5" />
+            </StackPanel>
+        </Border>
+
+        <!-- Расходы -->
+        <Border Grid.Row="1" Grid.Column="1" Background="LightBlue" CornerRadius="10" Margin="10" Padding="10">
+            <StackPanel>
+                <TextBlock x:Name="TotalSpentTextBlock" Text="Всего потрачено: 0" Foreground="Navy" FontSize="16" Margin="0,5" />
+            </StackPanel>
+        </Border>
+
+        <!-- Баланс -->
+        <Border Grid.Row="1" Grid.Column="2" Background="LightBlue" CornerRadius="10" Margin="10" Padding="10">
+            <StackPanel>
+                <TextBlock x:Name="BalanceTextBlock" Text="Баланс: 0" FontSize="16" Foreground="Navy" Margin="0,5" />
+            </StackPanel>
+        </Border>
 
         <Button Content="Сделать отчет" Grid.Row="3"
                 HorizontalAlignment="Center" 
                 Width="120" Height="40" Background="Tomato"
                 Foreground="White" FontWeight="Bold" Click="GenerateReportButton_Click" />
+        
+        <Button Content="Назад" FontSize="14" Foreground="Navy" 
+                Background="Tomato" Grid.Row="4" HorizontalAlignment="Center"
+                Width="100" Height="40" Margin="10"
+                VerticalAlignment="Bottom"
+                Click="ExitButton_Click" />
     </Grid>
 </Window>

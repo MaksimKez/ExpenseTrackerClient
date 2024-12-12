@@ -28,6 +28,11 @@ public partial class ReportWindow : Window
         BalanceTextBlock.Text = $"Баланс: {balance:C}";
     }
 
+    private void ExitButton_Click(object sender, RoutedEventArgs e)
+    {
+        Close();
+    }
+    
     private void GenerateReportButton_Click(object sender, RoutedEventArgs e)
     {
         try
