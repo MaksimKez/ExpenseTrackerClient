@@ -22,16 +22,27 @@
         </Grid.ColumnDefinitions>
 
         <!-- Кнопка Назад -->
-        <Button Content="Назад"  Background="Tomato" FontSize="14"
+        <Button Content="Назад" FontSize="14" Background="Tomato"
+                Foreground="Navy"
+                Width="80"
+                Margin="10" Padding="5"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Margin="10"
-                Grid.Row="0"
-                Grid.Column="0"
+                Grid.Row="0" Grid.Column="0"
                 Click="BackButton_Click" />
+
+        <!-- Заголовок -->
+        <TextBlock Text="Вход пользователя"
+                   Foreground="Navy"
+                   FontSize="20" FontWeight="Bold"
+                   Margin="10"
+                   Grid.Row="0" Grid.Column="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
 
         <!-- Лейбл для ввода имени пользователя -->
         <Label Content="Имя пользователя:" FontSize="16"
+               Foreground="Navy"
                VerticalAlignment="Center"
                HorizontalAlignment="Right"
                Margin="10"
@@ -45,7 +56,7 @@
                  Grid.Column="1" />
 
         <!-- Лейбл для ввода пароля -->
-        <Label Content="Пароль:" FontSize="16"
+        <Label Content="Пароль:" FontSize="16" Foreground="Navy"
                VerticalAlignment="Center"
                HorizontalAlignment="Right"
                Margin="10"
@@ -59,7 +70,9 @@
                      Grid.Column="1" />
 
         <!-- Кнопка для входа в аккаунт -->
-        <Button Content="Войти в аккаунт" FontSize="14" Background="YellowGreen"
+        <Button Content="Войти в аккаунт" FontSize="14" 
+                Background="YellowGreen" Foreground="Navy"
+                Width="200" Height="40"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Margin="10"

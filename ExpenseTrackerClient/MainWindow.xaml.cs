@@ -135,6 +135,143 @@ public partial class MainWindow : Window
     {
         var registerOrLogInWindow = new RegisterOrLogInWindow();
         registerOrLogInWindow.Show();
-        Close();
+        this.Close();
     }
+
+    private void SearchButton_Click(object sender, RoutedEventArgs e)
+    {
+        SearchFilterWindow filterWindow = new SearchFilterWindow();
+        filterWindow.ShowDialog();
+    }
+
+    private void SortButton_Click(object sender, RoutedEventArgs e)
+    {
+        SortCriteriaWindow sortWindow = new SortCriteriaWindow();
+        if (sortWindow.ShowDialog() == true)
+        {
+            SortRecords(sortWindow.SelectedCriteria);
+        }
+    }
+
+    private void ReportButton_Click(object sender, RoutedEventArgs e)
+    {
+        var reportWindow = new ReportWindow();
+        reportWindow.Show();
+        this.Close();
+    }
+
+    private void SortRecords(string criteria) 
+    { 
+        switch (criteria) 
+        { 
+            case "Date": 
+                _incomes = new ObservableCollection<Income>(_incomes.OrderBy(x => x.CreatedAt)); // Встроенная сортировка
+                _expenses = new ObservableCollection<Expense>(_expenses.OrderBy(x => x.CreatedAt)); // Встроенная сортировка
+                break; 
+            case "Category": 
+                _incomes = new ObservableCollection<Income>(BubbleSort(_incomes.ToList())); // Пузырьковая сортировка
+                _expenses = new ObservableCollection<Expense>(BubbleSort(_expenses.ToList())); // Пузырьковая сортировка
+                break;
+            case "Amount": 
+                _incomes = new ObservableCollection<Income>(ShakerSort(_incomes.ToList())); // Шейкерная сортировка
+                _expenses = new ObservableCollection<Expense>(ShakerSort(_expenses.ToList())); // Шейкерная сортировка
+                break;
+        } 
+        DataContext = null; 
+        DataContext = this; 
+    }
+    
+    public static List<Income> BubbleSort(List<Income> list)
+    {
+        int n = list.Count;
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = 0; j < n - 1 - i; j++)
+            {
+                if (list[j].IncomeSource > list[j + 1].IncomeSource)
+                {
+                    var temp = list[j];
+                    list[j] = list[j + 1];
+                    list[j + 1] = temp;
+                }
+            }
+        }
+        return list;
+    }
+
+    public static List<Expense> BubbleSort(List<Expense> list)
+    {
+        int n = list.Count;
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = 0; j < n - 1 - i; j++)
+            {
+                if (list[j].ExpenseSource > list[j + 1].ExpenseSource)
+                {
+                    var temp = list[j]; list[j] = list[j + 1]; list[j + 1] = temp;
+                }
+            }
+        } 
+        return list;
+    }
+
+    public static List<Income> ShakerSort(List<Income> list)
+    {
+        int left = 0; 
+        int right = list.Count - 1;
+        while (left <= right)
+        {
+            for (int i = left; i < right; i++)
+            {
+                if (list[i].Sum > list[i + 1].Sum)
+                {
+                    var temp = list[i]; 
+                    list[i] = list[i + 1];
+                    list[i + 1] = temp;
+                }
+            } 
+            right--;
+            for (int i = right; i > left; i--)
+            {
+                if (list[i - 1].Sum > list[i].Sum)
+                {
+                    var temp = list[i]; 
+                    list[i] = list[i - 1]; 
+                    list[i - 1] = temp;
+                }
+            } 
+            left++;
+        } 
+        return list;
+    }
+
+    public static List<Expense> ShakerSort(List<Expense> list)
+    {
+        int left = 0; 
+        int right = list.Count - 1;
+        while (left <= right)
+        {
+            for (int i = left; i < right; i++)
+            {
+                if (list[i].Sum > list[i + 1].Sum)
+                {
+                    var temp = list[i]; 
+                    list[i] = list[i + 1]; 
+                    list[i + 1] = temp;
+                }
+            } 
+            right--;
+            for (int i = right; i > left; i--)
+            {
+                if (list[i - 1].Sum > list[i].Sum)
+                {
+                    var temp = list[i];
+                    list[i] = list[i - 1]; 
+                    list[i - 1] = temp;
+                }
+            }
+            left++;
+        } 
+        return list;
+    } 
 }

@@ -1,0 +1,61 @@
+<Window x:Class="ExpenseTrackerClient.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:ExpenseTrackerClient"
+        mc:Ignorable="d"
+        Background="PaleTurquoise"
+        Title="ReportWindow" Height="450" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Доходы -->
+        <Border Grid.Row="0" Grid.Column="0" Background="LightBlue" CornerRadius="10" Margin="10" Padding="10">
+            <StackPanel>
+                <TextBlock Text="Общая сумма доходов" Foreground="Navy" FontSize="16" FontWeight="Bold" Margin="5" />
+                <TextBlock Text="{Binding TotalIncome, StringFormat=C}" 
+                           FontSize="20" FontWeight="Bold" Margin="5" />
+            </StackPanel>
+        </Border>
+
+        <!-- Расходы -->
+        <Border Grid.Row="0" Grid.Column="1" Background="LightBlue" CornerRadius="10" Margin="10" Padding="10">
+            <StackPanel>
+                <TextBlock Text="Общая сумма расходов" Foreground="Navy" FontSize="16" FontWeight="Bold" Margin="5" />
+                <TextBlock Text="{Binding TotalExpense, StringFormat=C}" 
+                           FontSize="20" FontWeight="Bold" Margin="5" />
+            </StackPanel>
+        </Border>
+
+        <!-- Баланс -->
+        <Border Grid.Row="0" Grid.Column="2" Background="LightBlue" CornerRadius="10" Margin="10" Padding="10">
+            <StackPanel>
+                <TextBlock Text="Текущий баланс" Foreground="Navy" FontSize="16" FontWeight="Bold" Margin="5" />
+                <TextBlock Text="{Binding Balance, StringFormat=C}" 
+                           FontSize="20" FontWeight="Bold" Margin="5" />
+            </StackPanel>
+        </Border>
+
+        <!-- Кнопка отчета -->
+        <Button Grid.Row="2" Grid.ColumnSpan="3" Content="Отчет"
+                Width="150" Height="40" FontSize="14"
+                Background="Navy" Foreground="White" 
+                Click="ReportButton_Click" HorizontalAlignment="Center" Margin="20" />
+        
+        <Button Content="Назад" FontSize="14" Foreground="Navy" 
+                Background="Tomato" Grid.Row="2" Grid.ColumnSpan="3"
+                Width="100" Height="40" Margin="10"
+                VerticalAlignment="Bottom"
+                Click="ExitButton_Click" />
+    </Grid>
+</Window>
