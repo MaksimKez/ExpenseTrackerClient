@@ -1,0 +1,27 @@
+<Window x:Class="ExpenseTrackerClient.SortAndSearchWindows.SearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:ExpenseTrackerClient.SortAndSearchWindows"
+        mc:Ignorable="d"
+        Title="SearchWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <StackPanel>
+            <Label Content="Выберите критерий поиска:" FontSize="16" HorizontalAlignment="Center" />
+            <ComboBox x:Name="criteriaComboBox" Width="200" Margin="10" HorizontalAlignment="Center">
+                <ComboBoxItem Content="Дата" />
+                <ComboBoxItem Content="Сумма" />
+            </ComboBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Label Content="Значение:" VerticalAlignment="Center" />
+                <TextBox x:Name="valueTextBox" Width="150" Margin="10,0,0,0" />
+            </StackPanel>
+            <Button Content="Найти" Width="100" Margin="10" HorizontalAlignment="Center" 
+                    Click="SearchButton_Click" />
+            <ListBox x:Name="resultsListBox" Height="150" Margin="10" />
+            <Button Content="Закрыть" Width="100" Margin="10" HorizontalAlignment="Center" 
+                    Click="ExitButton_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

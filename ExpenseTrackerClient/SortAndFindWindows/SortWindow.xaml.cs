@@ -1,7 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using ExpenseTrackerClient.Data.HttpClients;
 using ExpenseTrackerClient.Data.Models;
 
 namespace ExpenseTrackerClient.SortAndFindWindows;

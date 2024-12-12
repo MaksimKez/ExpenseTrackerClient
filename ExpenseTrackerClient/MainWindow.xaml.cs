@@ -6,8 +6,9 @@ using System.Windows.Input;
 using ExpenseTrackerClient.Data.HttpClients;
 using ExpenseTrackerClient.Data.Models;
 using ExpenseTrackerClient.Models;
-using ExpenseTrackerClient.SortAndFindWindows;
+using ExpenseTrackerClient.SortAndSearchWindows;
 using Newtonsoft.Json;
+using SortWindow = ExpenseTrackerClient.SortAndFindWindows.SortWindow;
 
 namespace ExpenseTrackerClient;
 
@@ -159,5 +160,11 @@ public partial class MainWindow : Window
 
         MessageBox.Show("Данные обновлены после сортировки.", "Сортировка", MessageBoxButton.OK, MessageBoxImage.Information);
         ;
+    }
+
+    private void SearchButton_Click(object sender, RoutedEventArgs e)
+    {
+        var searchWindow = new SearchWindow(_incomes.ToList(), _expenses.ToList());
+        searchWindow.ShowDialog();
     }
 }

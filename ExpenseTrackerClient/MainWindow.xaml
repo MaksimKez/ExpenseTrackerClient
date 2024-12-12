@@ -50,6 +50,10 @@
                 <Button Content="Сортировка" Width="150" Margin="0,10" 
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="SortButton_Click"/>
+                
+                <Button Content="Поиск" Width="150" Margin="0,10" 
+                        Style="{StaticResource MaterialDesignFlatButton}" 
+                        Click="SearchButton_Click"/>
             </StackPanel>
         </materialDesign:DrawerHost.LeftDrawerContent>
 
