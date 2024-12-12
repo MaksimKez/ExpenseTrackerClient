@@ -9,7 +9,8 @@ namespace ExpenseTrackerClient;
 
 public partial class RegisterWindow : Window
 {
-    private const string PATH = "C:\\Users\\Tonya\\Desktop\\ExpenseTrackerClient\\ExpenseTrackerClient\\UserAndAccountData.json";
+    private const string PATH = "C:\\Users\\Tonya\\Desktop\\kursClient\\ExpenseTrackerClient\\UserAndAccountData.json";
+
     public RegisterWindow()
     {
         InitializeComponent();
