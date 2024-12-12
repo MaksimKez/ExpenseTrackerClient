@@ -20,7 +20,7 @@ public partial class MainWindow : Window
     private ObservableCollection<Income> _incomes;
     private ObservableCollection<Expense> _expenses;
     private TransactionsClient _httpClient;
-    private const string FILE_PATH = "C:\\Users\\prost\\Desktop\\ExpenseTrackerClient\\ExpenseTrackerClient\\UserAndAccountData.json";
+    private const string FILE_PATH = "C:\\Users\\Tonya\\Desktop\\ExpenseTrackerClient\\ExpenseTrackerClient\\UserAndAccountData.json";
 
     public MainWindow()
     {

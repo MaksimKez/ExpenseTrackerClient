@@ -9,7 +9,7 @@ namespace ExpenseTrackerClient.Data.HttpClients;
 
 public class UserClient : IUserClient
 {
-    private const string CONNECTION_STRING = "https://localhost:44388/";
+    private const string CONNECTION_STRING = "https://localhost:7213/";
     private readonly HttpClient _httpClient;
 
     public UserClient()

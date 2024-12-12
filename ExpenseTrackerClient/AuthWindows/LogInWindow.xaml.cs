@@ -8,7 +8,7 @@ namespace ExpenseTrackerClient;
 
 public partial class LogInWindow : Window
 { 
-    private const string PATH = "C:\\Users\\prost\\Desktop\\ExpenseTrackerClient\\ExpenseTrackerClient\\UserAndAccountData.json";
+    private const string PATH = "C:\\Users\\Tonya\\Desktop\\ExpenseTrackerClient\\ExpenseTrackerClient\\UserAndAccountData.json";
     
     public LogInWindow()
     {
