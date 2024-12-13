@@ -14,6 +14,13 @@ public partial class SortCriteriaWindow : System.Windows.Window
         InitializeComponent();
     }
     
+    private void ExitButton_Click(object send, RoutedEventArgs e)
+    {
+        MainWindow mainWindow = new MainWindow();
+        mainWindow.Show();
+        this.Close();
+    }
+    
     private void SortIncomesButton_Click(object sender, RoutedEventArgs e)
     {
         if (criteriaComboBox.SelectedItem != null)

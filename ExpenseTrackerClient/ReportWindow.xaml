@@ -51,5 +51,10 @@
                 Width="150" Height="40" FontSize="14"
                 Background="Navy" Foreground="White" 
                 Click="ReportButton_Click" HorizontalAlignment="Center" Margin="20" />
+        <Button Content="Back" FontSize="14" Foreground="Navy" 
+                Background="Tomato" Grid.Row="2" Grid.ColumnSpan="3"
+                Width="100" Height="40" Margin="10"
+                VerticalAlignment="Bottom"
+                Click="ExitButton_Click" />
     </Grid>
 </Window>

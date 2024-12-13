@@ -14,6 +14,13 @@ public partial class SearchResultsWindow : System.Windows.Window
         InitializeComponent();
     }
     
+    private void ExitButton_Click(object send, RoutedEventArgs e)
+    {
+        MainWindow mainWindow = new MainWindow();
+        mainWindow.Show();
+        this.Close();
+    }
+    
     public void DisplayResults<T>(List<T> results) 
     { 
         ResultsListBox.ItemsSource = results;

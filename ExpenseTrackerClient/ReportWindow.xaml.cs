@@ -46,6 +46,14 @@ public partial class ReportWindow : System.Windows.Window
         _incomes = new ObservableCollection<Income>();
         _expenses = new ObservableCollection<Expense>();
         _httpClient = new TransactionsClient();
+        DataContext = new FinancialViewModel();
+    }
+    
+    private void ExitButton_Click(object send, RoutedEventArgs e)
+    {
+        MainWindow mainWindow = new MainWindow();
+        mainWindow.Show();
+        this.Close();
     }
     
     private Guid GetBankAccountIdFromJson(string filePath)

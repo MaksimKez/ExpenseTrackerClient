@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using DocumentFormat.OpenXml.Spreadsheet;
 using ExpenseTrackerClient.Data.Models;
 
 namespace ExpenseTrackerClient;
@@ -17,6 +18,12 @@ public partial class SearchFilterWindow : Window
         _expenses = new List<Expense>(); 
     }
 
+    private void ExitButton_Click(object send, RoutedEventArgs e)
+    {
+        MainWindow mainWindow = new MainWindow();
+        mainWindow.Show();
+        this.Close();
+    }
      private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             if (criteriaComboBox.SelectedItem != null && !string.IsNullOrEmpty(searchValueTextBox.Text))
