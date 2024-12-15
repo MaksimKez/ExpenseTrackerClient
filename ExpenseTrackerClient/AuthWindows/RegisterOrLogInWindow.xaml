@@ -27,7 +27,7 @@
                     <RotateTransform Angle="-20" />
                 </Rectangle.RenderTransform>
             </Rectangle>
-
+            
             <!-- Многоугольники с мягкими оттенками -->
             <Polygon Fill="#B0E0E6" Points="350,150 400,250 450,150" 
                      Canvas.Left="600" Canvas.Top="200" 
@@ -49,5 +49,6 @@
                 Canvas.Top="200" Canvas.Left="200"
                 Margin="10" Padding="10"
                 Click="RegisterButton_Click"/>
+        </Canvas>
     </Grid>
 </Window>
